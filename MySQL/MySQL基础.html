@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySQL基础 | bxxiao</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <meta name="description" content="some study note">
+    
+    <link rel="preload" href="/assets/css/0.styles.8b3afbe4.css" as="style"><link rel="preload" href="/assets/js/app.a0f0c145.js" as="script"><link rel="preload" href="/assets/js/2.559856d7.js" as="script"><link rel="preload" href="/assets/js/33.89462aeb.js" as="script"><link rel="prefetch" href="/assets/js/10.f1aa588f.js"><link rel="prefetch" href="/assets/js/11.476639e1.js"><link rel="prefetch" href="/assets/js/12.fae929b6.js"><link rel="prefetch" href="/assets/js/13.de12decb.js"><link rel="prefetch" href="/assets/js/14.ac5eade3.js"><link rel="prefetch" href="/assets/js/15.ed5c7f01.js"><link rel="prefetch" href="/assets/js/16.ccf47d0d.js"><link rel="prefetch" href="/assets/js/17.a14f5d1e.js"><link rel="prefetch" href="/assets/js/18.6a03d269.js"><link rel="prefetch" href="/assets/js/19.255eeb90.js"><link rel="prefetch" href="/assets/js/20.5b53e940.js"><link rel="prefetch" href="/assets/js/21.6226a2db.js"><link rel="prefetch" href="/assets/js/22.64948788.js"><link rel="prefetch" href="/assets/js/23.7332751e.js"><link rel="prefetch" href="/assets/js/24.d50c5907.js"><link rel="prefetch" href="/assets/js/25.6b0c20bd.js"><link rel="prefetch" href="/assets/js/26.82e490e7.js"><link rel="prefetch" href="/assets/js/27.3cc8ff55.js"><link rel="prefetch" href="/assets/js/28.5fc9a918.js"><link rel="prefetch" href="/assets/js/29.942d9f06.js"><link rel="prefetch" href="/assets/js/3.168c0e15.js"><link rel="prefetch" href="/assets/js/30.9e208b0e.js"><link rel="prefetch" href="/assets/js/31.835448bc.js"><link rel="prefetch" href="/assets/js/32.46428ebb.js"><link rel="prefetch" href="/assets/js/34.3cbe6d72.js"><link rel="prefetch" href="/assets/js/35.7dc19285.js"><link rel="prefetch" href="/assets/js/36.3c245f55.js"><link rel="prefetch" href="/assets/js/37.ab6f8d89.js"><link rel="prefetch" href="/assets/js/38.2e45f9e2.js"><link rel="prefetch" href="/assets/js/39.c0594fc1.js"><link rel="prefetch" href="/assets/js/4.d1df7b59.js"><link rel="prefetch" href="/assets/js/40.b0a82dcc.js"><link rel="prefetch" href="/assets/js/41.0d3f49b6.js"><link rel="prefetch" href="/assets/js/42.fb59064e.js"><link rel="prefetch" href="/assets/js/43.05a9e4d0.js"><link rel="prefetch" href="/assets/js/44.88fcf2d8.js"><link rel="prefetch" href="/assets/js/5.39331079.js"><link rel="prefetch" href="/assets/js/6.a3f0e1fc.js"><link rel="prefetch" href="/assets/js/7.4f7f427b.js"><link rel="prefetch" href="/assets/js/8.27990c2d.js"><link rel="prefetch" href="/assets/js/9.7fb0e56c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.8b3afbe4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">bxxiao</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/#基础" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/#多线程" class="nav-link">
+  多线程
+</a></li><li class="dropdown-item"><!----> <a href="/#JVM" class="nav-link">
+  JVM
+</a></li><li class="dropdown-item"><!----> <a href="/#集合源码分析" class="nav-link">
+  集合源码
+</a></li></ul></div></div><div class="nav-item"><a href="/#mysql" class="nav-link">
+  MySQL
+</a></div><div class="nav-item"><a href="https://github.com/bxxiao/bxxiao.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Java" class="dropdown-title"><span class="title">Java</span> <span class="arrow down"></span></button> <button type="button" aria-label="Java" class="mobile-dropdown-title"><span class="title">Java</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/#基础" class="nav-link">
+  基础
+</a></li><li class="dropdown-item"><!----> <a href="/#多线程" class="nav-link">
+  多线程
+</a></li><li class="dropdown-item"><!----> <a href="/#JVM" class="nav-link">
+  JVM
+</a></li><li class="dropdown-item"><!----> <a href="/#集合源码分析" class="nav-link">
+  集合源码
+</a></li></ul></div></div><div class="nav-item"><a href="/#mysql" class="nav-link">
+  MySQL
+</a></div><div class="nav-item"><a href="https://github.com/bxxiao/bxxiao.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>MySQL基础</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#dql" class="sidebar-link">DQL</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#基础查询" class="sidebar-link">基础查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#条件查询" class="sidebar-link">条件查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#排序查询" class="sidebar-link">排序查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#分组查询" class="sidebar-link">分组查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#连接查询" class="sidebar-link">连接查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#子查询" class="sidebar-link">子查询</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#分页查询-limit" class="sidebar-link">分页查询（Limit）</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#联合查询" class="sidebar-link">联合查询</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#dml" class="sidebar-link">DML</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#插入-insert" class="sidebar-link">插入（insert）</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#更新-update" class="sidebar-link">更新（update）</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#删除-delete" class="sidebar-link">删除（delete）</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#ddl" class="sidebar-link">DDL</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#库的管理" class="sidebar-link">库的管理</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#表的管理" class="sidebar-link">表的管理</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#mysql数据类型" class="sidebar-link">MySQL数据类型</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#整型" class="sidebar-link">整型</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#小数" class="sidebar-link">小数</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#字符型" class="sidebar-link">字符型</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#日期类型" class="sidebar-link">日期类型</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#mysql约束" class="sidebar-link">MySQL约束</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#概述" class="sidebar-link">概述</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#primary-key和unique" class="sidebar-link">PRIMARY KEY和UNIQUE</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#关于外键" class="sidebar-link">关于外键</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#关于auto-increment" class="sidebar-link">关于auto_increment</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图" class="sidebar-link">视图</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#概述-2" class="sidebar-link">概述</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图的创建和使用" class="sidebar-link">视图的创建和使用</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图的修改" class="sidebar-link">视图的修改</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图的删除和查看" class="sidebar-link">视图的删除和查看</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图更新" class="sidebar-link">视图更新</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#视图与表" class="sidebar-link">视图与表</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#变量" class="sidebar-link">变量</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#系统变量" class="sidebar-link">系统变量</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#自定义变量" class="sidebar-link">自定义变量</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#存储过程" class="sidebar-link">存储过程</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#函数" class="sidebar-link">函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#自定义函数" class="sidebar-link">自定义函数</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#内置函数" class="sidebar-link">内置函数</a></li></ul></li><li><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#流程控制" class="sidebar-link">流程控制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#分支结构" class="sidebar-link">分支结构</a></li><li class="sidebar-sub-header"><a href="/MySQL/MySQL%E5%9F%BA%E7%A1%80.html#循环结构" class="sidebar-link">循环结构</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="dql"><a href="#dql" class="header-anchor">#</a> DQL</h2> <blockquote><p>该笔记的实例代码中的数据库是<code>myemploees</code>。</p></blockquote> <p>SQL语言的分类：</p> <ul><li>DQL（Data Query Language）：数据查询语言。</li> <li>DML（Data Management Language）：数据操作语言，修改表的语言，如插入、修改、删除语句。</li> <li>DDL（Data Definition Language）：数据定义语言，如创建表、创建库。</li> <li>TCL（Translation Control Language）：事物控制语言。</li></ul> <h3 id="基础查询"><a href="#基础查询" class="header-anchor">#</a> 基础查询</h3> <p><strong>tips：字符型、日期型的值用单引号括起来。</strong></p> <p>查询表中字段：<code>select queryList from tableName;</code></p> <p>查询所有字段：<code>select * from tableName;</code></p> <p>查询常量：<code>select 100;</code>或  <code>select 'string';</code></p> <p>查询表达式：<code>select 100*90;</code></p> <p>查询函数：<code>select version();</code></p> <p><code>-----------------------------------------------</code></p> <p>起别名（别名可用于字段名重复的情况）：</p> <p><code>SELECT first_name AS 姓,last_name AS 名 FROM employees</code></p> <p>或</p> <p><code>SELECT first_name 姓,last_name 名 FROM employees;</code></p> <p><code>SELECT salary AS 'out put' FROM employees;</code></p> <p><code>-----------------------------------------------</code></p> <p>去重：<code>SELECT DISTINCT job_id FROM employees</code></p> <p><code>-----------------------------------------------</code></p> <p>SQL中的+号：</p> <p><strong>两个运算数都是数值型，作加法运算</strong>：<code>select 100+10;</code></p> <p><strong>有一个是字符串，则试图转化字符串为数字，若是转化失败则化为0</strong>：</p> <p><code>select '123'+10;</code>  //133</p> <p><code>select 'string'+10;</code>  //0 + 10 = 10</p> <p><code>SELECT 10 + '10sdfef3s' + 10;</code>若字符串的前端有数字，会进行转换，此处查询结果为10+10+10=30</p> <p><strong>若有运算数为null，则结果为null</strong>：<code>select null+10;</code></p> <p><strong>SQL中的+号没有字符串拼接功能，要拼接字符使用<code>concat()</code>函数</strong>：</p> <p><code>SELECT CONCAT(last_name,first_name) AS 姓名 FROM employees</code></p> <p><code>-----------------------------------------------</code></p> <h3 id="条件查询"><a href="#条件查询" class="header-anchor">#</a> 条件查询</h3> <p><strong>条件查询语句</strong>：<strong><code>select 查询列表 from tableName where condition;</code></strong></p> <p>其中，<strong><span style="color:red;">筛选条件顺序为：tableName -&gt; condition -&gt; 查询列表</span></strong>。</p> <h4 id="按条件表达式筛选"><a href="#按条件表达式筛选" class="header-anchor">#</a> 按条件表达式筛选</h4> <p>包含这些运算符的表达式：<strong><code>&gt; &lt; = != &lt;&gt;(建议) &gt;= &lt;=</code></strong></p> <p>eg：</p> <p><code>SELECT * FROM employees WHERE salary&gt;12000;</code></p> <p><code>SELECT last_name, first_name FROM employees WHERE department_id&lt;&gt;20;</code></p> <h4 id="按逻辑表达式筛选"><a href="#按逻辑表达式筛选" class="header-anchor">#</a> 按逻辑表达式筛选</h4> <p><strong><code>and or not</code>（建议）或<code>&amp;&amp; || !</code></strong>  （<strong>连接条件表达式</strong>）</p> <ul><li><p><code>SELECT last_name, salary, commission_pct</code></p> <p><code>FROM employees</code></p> <p><code>WHERE salary&gt;=10000 AND salary&lt;=20000;</code></p></li> <li><p><code>SELECT * FROM employees</code> <code>WHERE NOT(department_id&gt;=90 AND department_id&lt;=110) OR salary&gt;15000;</code></p></li></ul> <h4 id="模糊查询"><a href="#模糊查询" class="header-anchor">#</a> 模糊查询</h4> <p><span style="font-size:20px;"><code>like</code></span></p> <p><code>like</code>一般与通配符配合使用，如下：</p> <ul><li><code>%</code>：表示任意多个字符，包括空字符。</li> <li><code>_</code>：表示一个字符。</li></ul> <p>eg：</p> <p><code>SELECT * FROM employees WHERE last_name LIKE '%a%';</code></p> <p><code>SELECT last_name,salary FROM employees WHERE last_name LIKE '__t_b%';</code></p> <p>当需要查询包含通配符的字段，需要使用转义字符<code>\</code>，<strong>也可通过<code>escape</code>自定义转移字符</strong>。</p> <p>eg：</p> <p>查询last_name中第二个字符是_的字段：<strong><code>SELECT last_name FROM employees WHERE last_name LIKE '_\_%';</code></strong></p> <p>或：<strong><code>SELECT last_name FROM employees WHERE last_name LIKE '_$_%' ESCAPE '#39;;</code></strong></p> <p><strong><span style="color:red;">like也可用于筛选int类型值</span></strong>，eg：</p> <p><code>SELECT * FROM employees WHERE department_id LIKE '1__';</code></p> <p><code>-------------------------------------------------------------------------------------</code></p> <p><span style="font-size:20px;"><strong><code>（not） between and</code></strong></span> （<strong>左右为闭区间</strong>）</p> <p>代替<code>where value1&gt;= 100 and value1&lt;=120;</code>，<strong>代码更整洁</strong>。</p> <p>eg：</p> <p><code>SELECT * FROM employees WHERE employee_id BETWEEN 100 AND 120;</code></p> <p><code>-------------------------------------------------------------------------------------</code></p> <p><span style="font-size:20px;"><code>in</code></span></p> <p>若字段的值等于in列表内的任一值即满足条件。其中，<strong><span style="color:red;">in列表中的值必须为同一类型或可兼容</span></strong>（如'123'可等于123），<strong>且不支持通配符</strong>。</p> <p>eg：</p> <p><code>SELECT last_name,job_id FROM employees WHERE job_id IN('IT_PROG','AD_VP');</code></p> <p><code>-------------------------------------------------------------------------------------</code></p> <p><span style="font-size:20px;"><code>is （not） null</code></span></p> <p><strong>MySQL中的=，&lt;&gt;不能比较字段值跟null，只能用<code>is null</code>或<code>is not null</code></strong>。eg：</p> <p><code>SELECT last_name,commission_pct FROM employees WHERE commission_pct IS NOT NULL;</code></p> <p><strong>MySQL中，有安全等与符号：<code>&lt;=&gt;</code> ，可用于普通值间的比较跟null值的比较</strong>。</p> <p>eg：</p> <p><code>SELECT last_name,commission_pct FROM employees WHERE commission_pct &lt;=&gt; NULL;</code></p> <p><code>-------------------------------------------------------------------------------------</code></p> <p><span style="font-size:20px;"><code>REGEXP</code></span></p> <p>使用正则表达式匹配。操作符见 <a href="https://www.runoob.com/mysql/mysql-regexp.html" target="_blank" rel="noopener noreferrer">菜鸟教程<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 。</p> <p>eg：<code>SELECT * FROM admin WHERE username REGEXP '^谢'</code>;</p> <h3 id="排序查询"><a href="#排序查询" class="header-anchor">#</a> 排序查询</h3> <p><strong>排序查询语法</strong>：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> queryList
+<span class="token keyword">from</span> tableName
+<span class="token keyword">where</span> condition
+<span class="token keyword">order</span> <span class="token keyword">by</span> 排序列表名 <span class="token keyword">asc</span><span class="token operator">|</span><span class="token keyword">desc</span><span class="token punctuation">;</span>  <span class="token comment"># asc 升序；desc 降序，默认为asc</span>
+</code></pre></div><p><strong>order by的排序列表可用别名、单个字段、多个字段、函数及表达式</strong>。</p> <p>eg：</p> <p>工资降序：</p> <p><code>SELECT * FROM employees ORDER BY salary DESC;</code></p> <p>全部信息，年薪降序：</p> <p><code>SELECT *,salary*12*(1+IFNULL(commission_pct,0)) yearSalary FROM employees ORDER BY yearSalary DESC;</code></p> <p><strong>按多个字段排序</strong>：其中，<strong><span style="color:red;">先将salary升序排序，再在每个salary相同的区间内，对这些记录的employee_id进行降序排序</span></strong>。</p> <p><code>SELECT * FROM employees ORDER BY salary ASC,employee_id DESC;</code></p> <hr> <h3 id="分组查询"><a href="#分组查询" class="header-anchor">#</a> 分组查询</h3> <p><strong>分组查询使用<code>group by</code>关键字，配合分组函数</strong>，<strong><span style="color:red;">根据条件将记录分为若干组</span></strong>。语法：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment"># 只有出现在group by后的列才能位于查询列表；下列的数字为语句执行顺序</span>
+<span class="token keyword">SELECT</span> colum<span class="token punctuation">,</span>groupFunction<span class="token punctuation">(</span>colum<span class="token punctuation">)</span>   <span class="token comment">#5</span>
+<span class="token keyword">FROM</span> tableName  <span class="token comment">#1（把整个表拿出来）</span>
+<span class="token punctuation">[</span><span class="token keyword">WHERE</span> condition<span class="token punctuation">]</span>  <span class="token comment">#2</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> expr  <span class="token comment">#3</span>
+<span class="token punctuation">[</span><span class="token keyword">HAVING</span> condition2<span class="token punctuation">]</span>  <span class="token comment">#4</span>
+<span class="token punctuation">[</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> colum<span class="token punctuation">]</span>  <span class="token comment">#6</span>
+
+</code></pre></div><p>​		其中，<strong>若有where字句，则必须放在from后；且<span style="color:red;">只有出现在group by后的列（字段）才能位于查询列表</span>，<span style="color:red;">其中，数字为底层执行顺序</span></strong>。<strong>分组函数将根据<code>GROUP BY</code>的分组情况分别作用于每一组</strong>。</p> <p>​		一般不在having子句使用别名，原因是Oracle等数据库不支持，不使用别名从而有更好的通用性。</p> <p>例子：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#每个工种的最高工资</span>
+<span class="token keyword">SELECT</span> job_id<span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id<span class="token punctuation">;</span>
+
+<span class="token comment">#每个位置上的部门个数</span>
+<span class="token keyword">SELECT</span> location_id<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> departments <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> location_id<span class="token punctuation">;</span>
+
+
+<span class="token comment">#添加分组前的筛选</span>
+
+</code></pre></div><p>为分组查询添加筛选条件：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#查询邮箱中带有a的，每个部门的平均工资</span>
+<span class="token keyword">SELECT</span> department_id<span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> 平均工资 
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> email <span class="token operator">LIKE</span> <span class="token string">'%a%'</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">;</span>
+</code></pre></div><h4 id="分组后筛选-having子句"><a href="#分组后筛选-having子句" class="header-anchor">#</a> 分组后筛选(<code>having</code>子句)</h4> <p>​		上述的有筛选条件的分组查询都是<strong>分组前的筛选</strong>，即在原始表上进行筛选。</p> <p>​		有时需要对分组的后的结果再添加筛选条件（<strong>分组后的筛选</strong>），<strong>即对分组查询的结果集再添加筛选条件</strong>，这时<strong>where子句不能满足</strong>需求，<strong>需使用<code>having</code>子句，放在<code>group by</code>后面</strong>。</p> <p>如下：</p> <ul><li>例1中，先按部门id分组，查询出部门id和每个部门的员工个数，再在该查询基础上，使用having子句添加员工个数&gt;2的筛选条件。</li> <li>例2分析见注释。</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#添加分组后的筛选</span>
+<span class="token comment">#1.查询员工个数大于2的部门</span>
+<span class="token keyword">SELECT</span> department_id<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">2</span><span class="token punctuation">;</span>
+
+<span class="token comment">#2.查询每个工种有奖金的员工的最高工资&gt;12000的 的工种编号和最高工资</span>
+<span class="token comment">#对题目解析：</span>
+<span class="token comment">#查询每个工种(group by)有奖金(comm.. is not null，分组前，即可在原始表上进行筛选)的员工的</span>
+<span class="token comment">#最高工资(max salary)&gt;12000(having,即分组后）的 的工种编号和最高工资</span>
+<span class="token keyword">SELECT</span> job_id<span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id
+<span class="token keyword">HAVING</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">12000</span><span class="token punctuation">;</span>
+
+<span class="token comment">#3.查询领导编号大于102的领导手下员工的最低工资&gt;5000 的领导编号和最低工资</span>
+<span class="token keyword">SELECT</span> manager_id<span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> manager_id<span class="token operator">&gt;</span><span class="token number">102</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> manager_id
+<span class="token keyword">HAVING</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">5000</span><span class="token punctuation">;</span>
+                        
+</code></pre></div><p>分组条件也可以是函数或其他表达式：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#按表达式或函数分组</span>
+<span class="token comment">#1.按员工姓名的长度分组，查询每一组的员工个数，并筛选出员工个数长度大于5的</span>
+<span class="token keyword">SELECT</span> LENGTH<span class="token punctuation">(</span>last_name<span class="token punctuation">)</span> name_len<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> c <span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> name_len
+<span class="token keyword">HAVING</span> c<span class="token operator">&gt;</span><span class="token number">5</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>按多个字段分组</strong>：<strong><span style="color:red;">按多个字段分组的最终结果其实就是：各分组字段值都一样的若干记录为一组</span>，分组函数再根据分组情况作用于每一组。若把分组的字段顺序改变，其结果将一样</strong>。。</p> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#1.查询每个部门中，每个工种的员工平均工资</span>
+<span class="token keyword">SELECT</span> department_id<span class="token punctuation">,</span>job_id<span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">,</span>job_id<span class="token punctuation">;</span>
+
+<span class="token comment">#2.按平均工资降序排序</span>
+<span class="token keyword">SELECT</span> job_id<span class="token punctuation">,</span>department_id<span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job_id<span class="token punctuation">,</span>department_id
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+</code></pre></div><p>​		综上，分组查询的筛选条件分为分组前筛选跟分组后筛选，如下表</p> <table><thead><tr><th style="text-align:center;"></th> <th style="text-align:center;">数据源</th> <th style="text-align:center;">位置</th> <th style="text-align:center;">关键字</th></tr></thead> <tbody><tr><td style="text-align:center;">分组前筛选</td> <td style="text-align:center;">原始表</td> <td style="text-align:center;">group by子句前</td> <td style="text-align:center;">where</td></tr> <tr><td style="text-align:center;">分组后筛选</td> <td style="text-align:center;">分组后的结果集</td> <td style="text-align:center;">group by子句后</td> <td style="text-align:center;">having</td></tr></tbody></table> <p>其中，对分组函数做条件必须放在having子句中；能用分组前筛选则优先使用分组前筛选。</p> <hr> <h3 id="连接查询"><a href="#连接查询" class="header-anchor">#</a> 连接查询</h3> <p>（sql99标准）</p> <p>​		当查询对象来自多个表时，需要用到连接查询。当<strong>连接查询没有添加任何限制时，将会发送笛卡尔积现象</strong>，即若表1有12行，表2有4行，查询结果将会有12*4=48行。</p> <p>​		<strong><span style="color:red;">多表查询的结果可按以下思路：先查询出笛卡尔积结果，再根据where子句的条件进行筛选</span></strong>。</p> <p>​		<strong>连接查询按功能可分为</strong>：</p> <ul><li>内连接 <strong>inner</strong>（连接类型关键字可省略）
+<ul><li>等值连接</li> <li>非等值连接</li> <li>自连接</li></ul></li> <li>外连接
+<ul><li>左外连接 <strong>left [outer]</strong></li> <li>右外连接 <strong>right [outer]</strong></li> <li>全外连接（MySQL不支持）</li></ul></li> <li>交叉连接 <strong>cross</strong></li></ul> <p><strong>连接查询的语法</strong>：</p> <p>其中，<strong>连接类型关键字见上面功能分类</strong>。<strong>连接条件与筛选条件分开，可读性更高</strong>。#num表示执行顺序。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> 查询列表 <span class="token comment">#6</span>
+<span class="token keyword">from</span> table1 别名   <span class="token comment">#1</span>
+【连接类型关键字】<span class="token keyword">join</span> table2 别名  <span class="token comment">#2（笛卡尔积）</span>
+<span class="token keyword">on</span> 连接条件<span class="token number">1</span>
+【<span class="token keyword">join</span> table3 别名 
+<span class="token keyword">on</span> 连接条件<span class="token number">2</span>】
+【<span class="token keyword">where</span> 筛选条件】 <span class="token comment">#3</span>
+【<span class="token keyword">group</span> <span class="token keyword">by</span> 分组条件】 <span class="token comment">#4</span>
+【<span class="token keyword">having</span> 分组后筛选】 <span class="token comment">#5</span>
+【<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>】 <span class="token comment">#7</span>
+</code></pre></div><h4 id="内连接-等值连接"><a href="#内连接-等值连接" class="header-anchor">#</a> 内连接-等值连接</h4> <p>其查询结果与sql92标准中的一致。inner关键字可以省略；<strong>多表（3以上）查询中，需保证前后两个表有连接条件</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#1.查询员工名以及对应的部门</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span>department_id 
+<span class="token keyword">FROM</span> employees e 
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> departments d
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span><span class="token punctuation">;</span>
+
+<span class="token comment">#2.名字包含e的员工名和工种名</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> jobs j
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span><span class="token operator">=</span>j<span class="token punctuation">.</span><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span>
+<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span> <span class="token operator">LIKE</span> <span class="token string">'%e%'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#3.部门员工个数大于3的部门名以及对应员工个数，按个数降序</span>
+<span class="token keyword">SELECT</span> department_name<span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> 
+<span class="token keyword">FROM</span> departments d
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> employees e
+<span class="token keyword">ON</span> d<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span><span class="token operator">=</span>e<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_name
+<span class="token keyword">HAVING</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">3</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+
+<span class="token comment">#4.员工名，部门名，工种名，按部门名降序</span>
+
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span><span class="token operator">=</span>d<span class="token punctuation">.</span><span class="token punctuation">`</span>department_id<span class="token punctuation">`</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> jobs j <span class="token keyword">ON</span> e<span class="token punctuation">.</span><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span><span class="token operator">=</span>j<span class="token punctuation">.</span><span class="token punctuation">`</span>job_id<span class="token punctuation">`</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> department_name<span class="token punctuation">;</span>
+
+
+</code></pre></div><h4 id="内连接-非等值连接"><a href="#内连接-非等值连接" class="header-anchor">#</a> 内连接-非等值连接</h4> <p><strong>非等值连接与等值连接的不同之处在于：where子句使用<code>=</code>以外的条件运算符</strong>。</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#查询员工的工资跟工资等级（employees表跟job_grades表）
+SELECT last_name,salary,grade_level
+FROM employees e
+JOIN job_grades g
+ON salary BETWEEN lowest_sal AND highest_sal;
+
+
+#查询员工的工资等级及该等级的工资的员工个数
+SELECT grade_level,COUNT(*)
+FROM employees e
+JOIN job_grades g
+ON salary BETWEEN lowest_sal AND highest_sal
+GROUP BY grade_level;
+</code></pre></div><h4 id="内连接-自连接"><a href="#内连接-自连接" class="header-anchor">#</a> 内连接-自连接</h4> <p>自连接，顾名思义，即<strong>一个表连接它本身</strong>。适用的表的特点：<strong><span style="color:red;">表中有一个字段指向当前表的另一个字段</span></strong>。</p> <p>查询员工名，对应的领导id跟领导名：（领导id指向员工名）</p> <p><strong><span style="color:red;">此处为两个employees表起了两个别名</span></strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> a<span class="token punctuation">.</span><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span><span class="token punctuation">,</span>a<span class="token punctuation">.</span><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span><span class="token punctuation">,</span>b<span class="token punctuation">.</span><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span> manager_name
+<span class="token keyword">FROM</span> employees a<span class="token punctuation">,</span>employees b
+<span class="token keyword">WHERE</span> a<span class="token punctuation">.</span><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span><span class="token operator">=</span>b<span class="token punctuation">.</span><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span><span class="token punctuation">;</span>
+</code></pre></div><div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> a<span class="token punctuation">.</span><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span><span class="token punctuation">,</span>a<span class="token punctuation">.</span><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span><span class="token punctuation">,</span>b<span class="token punctuation">.</span><span class="token punctuation">`</span>last_name<span class="token punctuation">`</span> manager_name
+<span class="token keyword">FROM</span> employees a
+<span class="token keyword">JOIN</span> employees b
+<span class="token keyword">ON</span> a<span class="token punctuation">.</span><span class="token punctuation">`</span>manager_id<span class="token punctuation">`</span><span class="token operator">=</span>b<span class="token punctuation">.</span><span class="token punctuation">`</span>employee_id<span class="token punctuation">`</span><span class="token punctuation">;</span>	
+</code></pre></div><h4 id="外连接"><a href="#外连接" class="header-anchor">#</a> 外连接</h4> <p><strong>左/右外连接查询的特点</strong>：（<strong>注意主表、从表的概念</strong>）</p> <ul><li>查询结果<strong>保留主表的所有记录</strong>，对于从表，若有与主表匹配额的，显示匹配的值；<strong>若没用匹配的，显示null</strong>。</li> <li><strong>区分主表从表</strong>：<strong>对于左外连接，左主右从；对于右连接，右主左从</strong>。</li> <li><strong>可用于查询两表除了交集部分的剩余不匹配的记录</strong>。</li></ul> <p>​</p> <p>eg，例子只用了左外连接，右外连接同理，此处省略：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#1.查询所有女神，且若女神有男朋友，显示男朋友名
+SELECT b.`id`,b.name,bo.boyName
+FROM beauty b
+LEFT JOIN boys bo
+ON b.`boyfriend_id`=bo.`id`;
+
+#2.查询莫得男朋友的女神
+#先查询出上面例子的中间表，再使用筛选条件筛出莫得男朋友的女神
+SELECT b.name 
+FROM beauty b 
+LEFT JOIN boys bo 
+ON b.`boyfriend_id` = bo.`id` 
+WHERE bo.`id` IS NULL;
+</code></pre></div><p><strong>上述例题2的实现可见如下图解</strong>：</p> <img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20200714170433903.png" alt="image-20200714170433903" style="zoom:67%;"> <p>​		对于全外连接，MySQL不支持，<strong>理论上全外连接的查询结果是：对两个表的左外连接与右外连接的查询结果的并集</strong>。</p> <h4 id="交叉连接"><a href="#交叉连接" class="header-anchor">#</a> 交叉连接</h4> <p>​		交叉连接其实就是笛卡尔乘积的sql99标准写法。。。</p> <p>即以下两钟查询结果相同：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>SELECT b.name,bo.boyName
+FROM beauty b
+CROSS JOIN boys bo;
+
+SELECT b.name,bo.boyName
+FROM beauty b,boys bo;
+</code></pre></div><hr> <h3 id="子查询"><a href="#子查询" class="header-anchor">#</a> 子查询</h3> <p>​		<strong>出现在其他语句内部的select语句，成为子查询语句；相应的，内部嵌套其他select语句的查询成为外查询语句</strong>。子查询必须放在<code>()</code>内。</p> <p>​		<strong>子查询按结果集的行列数不同可分为</strong>：</p> <ul><li><strong>标量子查询</strong>（结果集只有一行一列，<strong>即一个单一值</strong>）</li> <li><strong>列子查询</strong>（一列多行）</li> <li><strong>行子查询</strong>（一行多列）</li> <li><strong>表子查询</strong>（多行多列）</li></ul> <p>​		<strong>子查询可出现的位置</strong>：</p> <ul><li>select后：<strong>仅支持标量子查询</strong>。</li> <li>from后：支持上述所有查询。</li> <li>where或having后：支持标量子查询、列、行子查询。</li> <li>exists后（相关子查询）：表子查询。</li></ul> <p>以下按子查询出现位置展开。</p> <h4 id="where-having后的子查询"><a href="#where-having后的子查询" class="header-anchor">#</a> <span style="font-size:20px;">where/having后的子查询</span></h4> <p>​		where/having后的子查询支持标量、列、行子查询。其中</p> <ul><li><p>若条件表达式是<code>&gt; &lt; = &lt;= &gt;= &lt;&gt;</code>，<strong>则必须使用标量子查询，因为这些运算符只能匹配一个操作数</strong>。</p></li> <li><p>若<strong>使用列子查询，一般搭配<code>in</code>，<code>any/some</code>，<code>all</code>关键字</strong>。</p> <table><thead><tr><th>操作符</th> <th>含义</th></tr></thead> <tbody><tr><td>in/not in</td> <td>等于（或不等于）列表中的任一个</td></tr> <tr><td>any/some（两者意义相同）</td> <td>与列表中的任意一个比较满足条件，可用min、max代替</td></tr> <tr><td>all</td> <td>与列表中的所有值比较都满足条件</td></tr></tbody></table></li> <li><p><strong>子查询的执行优先度高于主查询</strong>，因为主查询需用到子查询作为判断条件。</p></li></ul> <p>标量子查询：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#1.工资比Abel高的员工
+SELECT last_name FROM employees
+WHERE salary&gt;(
+	#标量子查询
+	SELECT salary 
+	FROM employees
+	WHERE last_name='Abel'
+);
+
+#2.返回job_id与141号员工相同,sa1a比143号员工多的员工姓名, job_id和工资
+SELECT last_name,job_id,salary 
+FROM employees
+WHERE job_id=(
+	SELECT job_id FROM employees
+	WHERE employee_id=141
+)
+AND
+salary&gt;(
+	SELECT salary FROM employees
+	WHERE employee_id=143
+);
+
+#3.查询最低工资大于50号部门最低工资 的 部门id 和 其最低工资
+
+SELECT department_id,MIN(salary)
+FROM employees
+GROUP BY department_id
+HAVING MIN(salary)&gt;(
+	SELECT MIN(salary) FROM employees
+	WHERE department_id=50
+);
+</code></pre></div><p>列子查询：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#1.返回1ocation_id是1400或1700的部门中的所有员工姓名
+SELECT last_name FROM employees
+WHERE department_id IN(
+	SELECT department_id FROM locations
+	WHERE location_id IN (1400,1700)
+);
+
+#2.返回其它工种中比（job_id为IT_PROG工种任一工资 1）低的员工的（员工号、姓名、job_id以及sa1ary 2）
+SELECT employee_id,last_name,job_id,salary
+FROM employees
+WHERE salary&lt;ANY(
+	SELECT DISTINCT salary FROM employees
+	WHERE job_id='IT_PROG'
+) AND  job_id&lt;&gt;'IT_PROG';
+</code></pre></div><p><strong>行子查询（一行多列或多行多列）</strong>：<strong>当筛选条件个数&gt;=2，且使用的判断符都一样，可以使用行子查询对多个字段同时判断</strong>。</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#查询员工编号最小，工资最高的员工信息
+SELECT * FROM employees
+WHERE (employee_id,salary)=(
+	SELECT MIN(employee_id),MAX(salary)
+	FROM employees
+);
+</code></pre></div><h4 id="select后的子查询"><a href="#select后的子查询" class="header-anchor">#</a> <span style="font-size:20px;">select后的子查询</span></h4> <p>select后的子查询只支持标量子查询。<strong><font color="red">若子查询结果为空，则返回null值</font></strong>。</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#每个部门的员工个数
+SELECT d.department_name,(
+	SELECT COUNT(*) 
+	FROM employees e
+	WHERE d.`department_id` =e.department_id
+) 'count' FROM departments d;
+</code></pre></div><h4 id="from后的子查询"><a href="#from后的子查询" class="header-anchor">#</a> <span style="font-size:20px;">from后的子查询</span></h4> <p>from后的子查询可支持任何类型的子查询。eg：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#查询每个部门的平均工资的工资等级
+#先查询每个部门的平均工资，再与工资等级表进行内连接查询
+SELECT ag_dep.*,grade_level
+FROM (
+	SELECT department_id,AVG(salary) ag
+	FROM employees
+	GROUP BY department_id
+) ag_dep
+INNER JOIN job_grades j
+ON ag_dep.ag BETWEEN j.`lowest_sal` AND j.`highest_sal`;
+
+</code></pre></div><h4 id="exists后的子查询"><a href="#exists后的子查询" class="header-anchor">#</a> <span style="font-size:20px;">exists后的子查询</span></h4> <p><strong>exists函数语法：<code>exists(查询语句)</code></strong>。</p> <p><strong>当查询语句的结果集不为空，则返回1，否则返回0</strong>。</p> <p>eg：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>#有员工的部门名
+SELECT department_name 
+FROM departments d
+WHERE EXISTS(
+	SELECT * 
+	FROM employees e
+	WHERE e.`department_id`=d.`department_id`
+);
+
+# 用列子查询
+SELECT department_name
+FROM departments d
+WHERE d.`department_id` 
+IN(
+SELECT e.department_id
+FROM employees e
+);
+</code></pre></div><hr> <h3 id="分页查询-limit"><a href="#分页查询-limit" class="header-anchor">#</a> 分页查询（Limit）</h3> <p>​		当要显示的查询结果过多，只需先显示部分记录时，可用<code>limit</code>进行分页查询。<strong><code>limit</code>语句要放在查询语句的最后</strong>。</p> <p>​		语法：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>limit size #显示从第一条记录开始的size条记录
+
+-- 显示从第pos（索引从0开始）条开始的size条记录
+limit pos,size 
+-- 或
+limit pos offset size
+</code></pre></div><p><strong>对于web应用中的分页查询，假如要显示第page页，每页有size个记录，则查询语句为：</strong></p> <p><strong><code>select * from tableName limit (page-1)*size,size;</code></strong></p> <h3 id="联合查询"><a href="#联合查询" class="header-anchor">#</a> 联合查询</h3> <p><strong>联合查询的作用是将多条查询语句的结果集合并为一个结果集</strong>。当要查询的<strong>信息来自多个表</strong>，且要查询的信息对应的<strong>字段在这些表中的类型一致</strong>，但这些表又<strong>没有直接关联</strong>，这时可使用联合查询。<strong>联合查询使用<code>UNION</code>关键字</strong>。</p> <p>联合查询的语法：</p> <div class="language-sql extra-class"><pre class="language-sql"><code>查询语句<span class="token number">1</span>
+<span class="token keyword">union</span>
+查询语句<span class="token number">2</span>
+<span class="token keyword">union</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre></div><p>联合查询的特点：</p> <ul><li><strong>多条查询语句的查询列数必须一致</strong>。</li> <li>每一列的类型必须一致；为了查询结果的正确显示，字段顺序也要一致（<strong>不一致不会报错，但结果会错误显示</strong>）。</li> <li><strong>union关键字默认去重（若是多个字段，则全部字段值相同才算相等），可使用<code>union all</code>显示重复项</strong>。</li> <li><strong>查询结果集的字段名与第一条查询语句的查询字段对应</strong>。</li></ul> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">select</span> id<span class="token punctuation">,</span>cname<span class="token punctuation">,</span>csex <span class="token keyword">from</span> t_ca <span class="token keyword">where</span> csex<span class="token operator">=</span><span class="token string">'男'</span>
+<span class="token keyword">union</span>
+<span class="token keyword">select</span> t_id<span class="token punctuation">,</span>tName<span class="token punctuation">,</span>tGender <span class="token keyword">from</span> t_ua <span class="token keyword">where</span> tGender<span class="token operator">=</span><span class="token string">'male'</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="dml"><a href="#dml" class="header-anchor">#</a> DML</h2> <p>  DML（Data Manage Language），数据操作语言，用于<strong>对表进行插入（insert）、删除（delete）、更新（update）操作</strong>。</p> <h3 id="插入-insert"><a href="#插入-insert" class="header-anchor">#</a> 插入（insert）</h3> <p>  插入语句的语法有两种，如下：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#1</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> table_name<span class="token punctuation">[</span><span class="token punctuation">(</span>colum1<span class="token punctuation">,</span> colum2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token comment">#该部分省略时默认所有字段</span>
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>value11<span class="token punctuation">,</span> value22<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token comment">#可同时插入多个记录</span>
+
+<span class="token comment">#2</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> table_name
+<span class="token keyword">SET</span> colum1<span class="token operator">=</span>value1<span class="token punctuation">,</span> colum2<span class="token operator">=</span>value2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+
+<span class="token comment">#3</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> table_name<span class="token punctuation">[</span><span class="token punctuation">(</span>colum1<span class="token punctuation">,</span> colum2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+</code></pre></div><p>  第一种方式可以同时插入多个记录，<strong>字段列表可省略，省略时默认插入表对应的所有字段</strong>；当只是要插入一条记录，且插入少数字段，可使用第二种方式，更为简便，<strong>但不支持插入多条记录</strong>。<strong><span style="color:red;">还可以通过子查询语句插入记录，此时子查询语句的查询列表要与要插入的表的字段对应</span></strong>。</p> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> beauty 
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token string">'女朋友'</span><span class="token punctuation">,</span> <span class="token string">'女'</span><span class="token punctuation">,</span> <span class="token string">'2000-02-26'</span><span class="token punctuation">,</span> <span class="token string">'123456'</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">#主键部分写null即可</span>
+
+<span class="token comment">#插入多条记录</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> beauty<span class="token punctuation">(</span>NAME<span class="token punctuation">,</span> sex<span class="token punctuation">,</span> borndate<span class="token punctuation">,</span> phone<span class="token punctuation">)</span> 
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'女朋友'</span><span class="token punctuation">,</span> <span class="token string">'女'</span><span class="token punctuation">,</span> <span class="token string">'2000-02-26'</span><span class="token punctuation">,</span> <span class="token string">'4546984'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token string">'迪丽热巴'</span><span class="token punctuation">,</span> <span class="token string">'女'</span><span class="token punctuation">,</span> <span class="token string">'2020-02-26'</span><span class="token punctuation">,</span> <span class="token string">'549884'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#使用第二种语法</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> beauty 
+<span class="token keyword">set</span> name<span class="token operator">=</span><span class="token string">'ggggg'</span><span class="token punctuation">,</span> borndate<span class="token operator">=</span><span class="token string">'1998-02-25'</span><span class="token punctuation">,</span> phone<span class="token operator">=</span><span class="token string">'8582321'</span><span class="token punctuation">;</span>
+</code></pre></div><p>通过子查询插入值。eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">insert</span> <span class="token keyword">into</span> beauty<span class="token punctuation">(</span>id<span class="token punctuation">,</span>name<span class="token punctuation">,</span>phone<span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token number">26</span><span class="token punctuation">,</span><span class="token string">'宋茜'</span><span class="token punctuation">,</span><span class="token string">'856132123'</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="更新-update"><a href="#更新-update" class="header-anchor">#</a> 更新（update）</h3> <p>​		更新表的SQL语句语法：<strong>其中，更新多表记录就是先将多个表连接起来，再对连接后的结果集进行更改。更改操作将作用到原表</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#更新单表记录</span>
+<span class="token keyword">UPDATE</span> table_name
+<span class="token keyword">SET</span> colum1<span class="token operator">=</span>new_value1<span class="token punctuation">,</span> colum2<span class="token operator">=</span>new_value2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span> <span class="token comment">#若不加筛选条件，会对字段对应的所有记录修改</span>
+
+<span class="token comment">#更新多表记录(sql99标准)</span>
+<span class="token keyword">UPDATE</span> table_name1 <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>
+JOIN_TYPE <span class="token keyword">JOIN</span> table_name2 <span class="token punctuation">[</span>alias<span class="token punctuation">]</span>
+<span class="token keyword">ON</span> join_condition
+<span class="token keyword">SET</span> colum1<span class="token operator">=</span>new_value1<span class="token punctuation">,</span> colum2<span class="token operator">=</span>new_value2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+
+</code></pre></div><p>eg:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">UPDATE</span> boys 
+<span class="token keyword">SET</span> boyname<span class="token operator">=</span><span class="token string">'张飞'</span> 
+<span class="token keyword">WHERE</span> boyname<span class="token operator">=</span><span class="token string">'鹿晗'</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">#多表更新</span>
+<span class="token comment">#修改张无忌的女朋友的电话号码为114455。需要先将boys表跟beauty表进行内连接</span>
+<span class="token keyword">UPDATE</span> boys bo
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> beauty be
+<span class="token keyword">ON</span> bo<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>be<span class="token punctuation">.</span><span class="token punctuation">`</span>boyfriend_id<span class="token punctuation">`</span>
+<span class="token keyword">SET</span> be<span class="token punctuation">.</span><span class="token punctuation">`</span>phone<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'114455'</span>
+<span class="token keyword">WHERE</span> bo<span class="token punctuation">.</span><span class="token punctuation">`</span>boyName<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'张无忌'</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="删除-delete"><a href="#删除-delete" class="header-anchor">#</a> 删除（delete）</h3> <p>​		删除语句会删除满足条件的所有记录。且删除语句也支持单表跟多表的删除，其语法如下：其中：</p> <ul><li>多表删除中，<strong>若只是想删除其中一个表的记录，DELETE后的只写要删除的表的表名即可</strong>。总之，delete后写上要删除的记录对应的表。</li></ul> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#单表</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> table_name
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>  <span class="token comment">#若不加筛选条件，该语句会删除整个表的记录</span>
+
+<span class="token comment">#多表</span>
+<span class="token keyword">DELETE</span> alias1<span class="token punctuation">,</span>alias2
+<span class="token keyword">FROM</span> table1_name alias1
+<span class="token punctuation">[</span>join_type<span class="token punctuation">]</span> <span class="token keyword">join</span> table2_name alias2
+<span class="token keyword">ON</span> join_condition
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+</code></pre></div><p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">delete</span> <span class="token keyword">from</span> beauty <span class="token keyword">where</span> phone <span class="token operator">like</span> <span class="token string">'%9'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#多表删除（该例子只删除beauty表）</span>
+<span class="token comment">#删除张无忌的女朋友的信息</span>
+<span class="token keyword">DELETE</span> be
+<span class="token keyword">FROM</span> boys bo
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> beauty be
+<span class="token keyword">ON</span> bo<span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token operator">=</span>be<span class="token punctuation">.</span><span class="token punctuation">`</span>boyfriend_id<span class="token punctuation">`</span>
+<span class="token keyword">WHERE</span> bo<span class="token punctuation">.</span><span class="token punctuation">`</span>boyName<span class="token punctuation">`</span><span class="token operator">=</span><span class="token string">'张无忌'</span><span class="token punctuation">;</span>
+</code></pre></div><p>当要删除整个表的记录，可以使用<code>truncate</code>关键字，语法是<code>TRUNCATE [TABLE] table_name;</code>。</p> <p>使用delete删除跟truncate删除的<strong>区别</strong>：</p> <ul><li>truncate不能加<code>where</code>。</li> <li>truncate的删除效率稍微高一点。</li> <li>若表中有自增长列，<strong>使用delete删除后不会改变当前的自增长值</strong>；<strong>而使用truncate删除后自增长值变为1</strong>。</li> <li><strong>truncate不能返回受影响的记录数，而delete可以</strong>。</li> <li><strong style="color:red;">在事务方面</strong>：<strong>delete是可以回滚的，而truncate不可回滚</strong>。</li></ul> <blockquote><p>以下来自 <a href="https://www.yiibai.com/mysql/truncate-table.html" target="_blank" rel="noopener noreferrer">MySQL TRUNCATE TABLE语句简介<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p>如果使用 InnoDB表，MySQL将在删除数据之前检查表中是否有可用的外键约束。 以下是一些情况：</p> <ul><li>如果表具有任何外键约束，则<code>TRUNCATE TABLE</code>语句会逐个删除行。如果外键约束具有<code>DELETE CASCADE</code>动作，则子表中的相应行也将被删除。</li> <li>如果外键约束没有指定 DELETE CASCADE 动作，<strong>则<code>TRUNCATE TABLE</code>将逐个删除行，并且遇到由子表中的行引用的行时（即其他表的外键指向该表的字段），它将停止并发出错误</strong>。</li> <li>如果表没有任何外键约束，则<code>TRUNCATE TABLE</code>语句将删除该表并重新创建一个具有相同结构的新表，这比使用<code>DELETE</code>语句特别是对于大表更快更有效。</li></ul> <p>如果使用其他存储引擎，则 <code>TRUNCATE TABLE</code> 语句将删除并重新创建一个新表。</p> <p>此外，<code>TRUNCATE TABLE</code>语句不使用<code>DELETE</code>语句，因此与表关联的<a href="http://www.yiibai.com/mysql/triggers.html" target="_blank" rel="noopener noreferrer">DELETE触发器<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>将不被调用。</p> <h2 id="ddl"><a href="#ddl" class="header-anchor">#</a> DDL</h2> <p>​		数据定义语言（Data Define Language， DDL）用于对数据库、表进行创建、修改、删除操作。</p> <h3 id="库的管理"><a href="#库的管理" class="header-anchor">#</a> 库的管理</h3> <p>库的相关语法如下：<strong>其中，对于创建、删除库，若是库已存在或不存在会报错，可使用<code>IF (NOT) EXISTS</code>进行判断，使语句正确执行</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#创建库</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> database_name<span class="token punctuation">;</span>
+
+<span class="token comment">#删除库</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> database_name<span class="token punctuation">;</span>
+
+<span class="token comment">#修改库</span>
+<span class="token comment">#修改库名（该语法似乎不用了）</span>
+<span class="token keyword">RENAME</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">TO</span> new_name<span class="token punctuation">;</span>
+
+<span class="token comment">#修改字符集</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> character_name<span class="token punctuation">;</span>
+</code></pre></div><h3 id="表的管理"><a href="#表的管理" class="header-anchor">#</a> 表的管理</h3> <h4 id="_1-表的创建"><a href="#_1-表的创建" class="header-anchor">#</a> 1.表的创建</h4> <p>创建表的语法：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> table_name<span class="token punctuation">(</span>
+	colum_name COLUM_TYPE <span class="token punctuation">[</span><span class="token punctuation">(</span>length<span class="token punctuation">)</span> 约束<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	colum_name COLUM_TYPE <span class="token punctuation">[</span><span class="token punctuation">(</span>length<span class="token punctuation">)</span> 约束<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    colum_name COLUM_TYPE <span class="token punctuation">[</span><span class="token punctuation">(</span>length<span class="token punctuation">)</span> 约束<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>eg:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> book<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+	bname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	author <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="_2-表的修改"><a href="#_2-表的修改" class="header-anchor">#</a> 2.表的修改</h4> <p>表的修改有修改列名、修改列的类型或约束、添加新列、删除列以及修改修改表名。对应的语法为：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 修改表</span>
+    <span class="token comment">-- 修改表本身的选项</span>
+        <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 表的选项（具体选项可见 <span class="token number">5.</span><span class="token operator">-</span>）
+        eg: <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">ENGINE</span><span class="token operator">=</span>MYISAM<span class="token punctuation">;</span>
+    <span class="token comment">-- 对表进行重命名</span>
+        <span class="token keyword">RENAME</span> <span class="token keyword">TABLE</span> 原表名 <span class="token keyword">TO</span> 新表名
+        <span class="token keyword">RENAME</span> <span class="token keyword">TABLE</span> 原表名 <span class="token keyword">TO</span> 库名<span class="token punctuation">.</span>表名 （可将表移动到另一个数据库）
+        <span class="token comment">-- RENAME可以交换两个表名</span>
+    <span class="token comment">-- 修改表的字段机构</span>
+        <span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 操作名
+        <span class="token comment">-- 操作名</span>
+            <span class="token keyword">ADD</span><span class="token punctuation">[</span> <span class="token keyword">COLUMN</span><span class="token punctuation">]</span> 字段定义       <span class="token comment">-- 增加字段</span>
+                <span class="token keyword">AFTER</span> 字段名          <span class="token comment">-- 表示增加在该字段名后面</span>
+                <span class="token keyword">FIRST</span>               <span class="token comment">-- 表示增加在第一个</span>
+            <span class="token keyword">ADD</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>字段名<span class="token punctuation">)</span>   <span class="token comment">-- 创建主键</span>
+            <span class="token keyword">ADD</span> <span class="token keyword">UNIQUE</span> <span class="token punctuation">[</span>索引名<span class="token punctuation">]</span> <span class="token punctuation">(</span>字段名<span class="token punctuation">)</span><span class="token comment">-- 创建唯一索引</span>
+            <span class="token keyword">ADD</span> <span class="token keyword">INDEX</span> <span class="token punctuation">[</span>索引名<span class="token punctuation">]</span> <span class="token punctuation">(</span>字段名<span class="token punctuation">)</span> <span class="token comment">-- 创建普通索引</span>
+            <span class="token keyword">DROP</span><span class="token punctuation">[</span> <span class="token keyword">COLUMN</span><span class="token punctuation">]</span> 字段名      <span class="token comment">-- 删除字段</span>
+            <span class="token keyword">MODIFY</span><span class="token punctuation">[</span> <span class="token keyword">COLUMN</span><span class="token punctuation">]</span> 字段名 字段属性     <span class="token comment">-- 支持对字段属性进行修改，不能修改字段名(所有原有属性也需写上)</span>
+            CHANGE<span class="token punctuation">[</span> <span class="token keyword">COLUMN</span><span class="token punctuation">]</span> 原字段名 新字段名 字段属性      <span class="token comment">-- 支持对字段名修改</span>
+            <span class="token keyword">DROP</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span>    <span class="token comment">-- 删除主键(删除主键前需删除其AUTO_INCREMENT属性)</span>
+            <span class="token keyword">DROP</span> <span class="token keyword">INDEX</span> 索引名 <span class="token comment">-- 删除索引</span>
+            <span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> 外键    <span class="token comment">-- 删除外键</span>
+        <span class="token comment">-- 删除约束</span>
+        	<span class="token comment"># 除了上面3个drop，删除一些列级约束可以通过modify</span>
+        	<span class="token keyword">MODIFY</span> <span class="token punctuation">[</span><span class="token keyword">COLUMN</span><span class="token punctuation">]</span> 字段名 字段类型 <span class="token punctuation">[</span>新的约束<span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">-- 通过这种方法重新让字段没有约束越换成新的约束</span>
+</code></pre></div><p>TIPS：<strong>表的修改中不支持<code>if (not) exists</code></strong>。</p> <p>对于自增的主键字段，在删除若干记录再重新插入数据时，会出现id值“断层”，可以通过以下sql语句修改自增值：</p> <div class="language-mysql extra-class"><pre class="language-text"><code>ALTER TABLE table_name AUTO_INCREMENT = N;
+</code></pre></div><h4 id="_3-表的删除"><a href="#_3-表的删除" class="header-anchor">#</a> 3.表的删除</h4> <p><code>DROP TABLE [IF EXISTS] table_name</code>.</p> <p>在sql脚本文件中写表或库创建的语句时，可以先删除表或库再创建，如下：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> database_name<span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span>
+</code></pre></div><h4 id="_4-表的复制"><a href="#_4-表的复制" class="header-anchor">#</a> 4.表的复制</h4> <p>表的复制可分为：</p> <ul><li><p><strong>通过<code>LIKE</code>关键字</strong>仅复制表的结构（<strong>复制全部字段，不包含数据</strong>）：<strong><code>CREATE TABLE copy_table_name LIKE exists_table;</code></strong></p></li> <li><p>复制表的结构（<strong>部分或全部字段</strong>）跟数据（<strong>部分或全部数据</strong>）</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> copy_table_name 
+<span class="token keyword">SELECT</span> 查询列表 <span class="token keyword">FROM</span> exists_table
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+</code></pre></div><ul><li><strong>通过查询列表来选择要复制的字段（使用<code>select *</code>即实现复制全部字段）</strong>。</li> <li>通过<code>where</code>来筛选要复制的数据。<strong>可以通过<code>where 0</code>来过滤掉全部的数据，即只复制部分或全部字段</strong>；也可以直接去掉where来复制所选字段对应的全部数据。</li></ul></li></ul> <h4 id="_5-表的选项-查看表结构"><a href="#_5-表的选项-查看表结构" class="header-anchor">#</a> 5.表的选项/查看表结构</h4> <div class="language- extra-class"><pre class="language-text"><code>表选项
+    -- 字符集
+        CHARSET = charset_name
+        如果表没有设定，则使用数据库字符集
+    -- 存储引擎
+        ENGINE = engine_name
+        表在管理数据时采用的不同的数据结构，结构不同会导致处理方式、提供的特性操作等不同
+        常见的引擎：InnoDB MyISAM Memory/Heap BDB Merge Example CSV MaxDB Archive
+        不同的引擎在保存表的结构和数据时采用不同的方式
+        MyISAM表文件含义：.frm表定义，.MYD表数据，.MYI表索引
+        InnoDB表文件含义：.frm表定义，表空间数据和日志文件
+        
+        SHOW ENGINES -- 显示存储引擎的状态信息
+        SHOW ENGINE 引擎名 {LOGS|STATUS} -- 显示存储引擎的日志或状态信息
+    -- 自增起始数
+        AUTO_INCREMENT = 行数
+    -- 数据文件目录
+        DATA DIRECTORY = '目录'
+    -- 索引文件目录
+        INDEX DIRECTORY = '目录'
+    -- 表注释
+        COMMENT = 'string'
+    -- 分区选项
+        PARTITION BY ... (详细见手册)
+-- 查看表结构
+    SHOW CREATE TABLE 表名 （信息更详细）
+    DESC 表名 / DESCRIBE 表名 / EXPLAIN 表名 / SHOW COLUMNS FROM 表名 [LIKE 'PATTERN']
+    SHOW TABLE STATUS [FROM db_name] [LIKE 'pattern']  
+</code></pre></div><hr> <h2 id="mysql数据类型"><a href="#mysql数据类型" class="header-anchor">#</a> MySQL数据类型</h2> <p>MySQL的数据类型有：</p> <ul><li>数值型：
+<ul><li>整型</li> <li>小数：定点、浮点</li></ul></li> <li>字符型：
+<ul><li>短文本：char、varchar</li> <li>长文本：text、blob(较长的二进制数据)</li></ul></li> <li>日期型</li></ul> <h3 id="整型"><a href="#整型" class="header-anchor">#</a> 整型</h3> <p>​		整形数据按字节大小可分为（括号内为字节数）：<strong>tinyint(1)、smallint(2)、mediumint(3)、int/integer(4)、bigint(8)</strong>。</p> <p><strong>整形数据的特点</strong>：</p> <ul><li><p>整形数据有有符号数和无符号数，默认是有符号数；要设置无符号数需在建表时添加 <strong><code>UNSIGNED</code>关键字</strong>。如：</p> <p><code>create table test(t1 int, t2 int unsigned);</code>。</p></li> <li><p>若插入的数值<strong>超出了类型值的范围</strong>，会报<code>out of range</code>异常，<strong>并停止插入操作</strong>。</p></li> <li><p><strong><span style="color:red;">整型值的长度指的是最多能显示出来有多少个数字</span></strong>。若无指定，每种类型的整型都有默认长度。建表时可以使用<code>ZEROFILL</code>关键字，当不足长度时用0进行左填充。eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> testss<span class="token punctuation">(</span>
+	t1 <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span> ZEROFILL
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> testss <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">55</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#插入55，因为使用了zerofill关键字，会对55左填充0，即0000055.</span>
+</code></pre></div></li></ul> <h3 id="小数"><a href="#小数" class="header-anchor">#</a> 小数</h3> <p>小数类型有浮点型和定点型：</p> <ul><li>浮点型
+<ul><li>float(M, D)</li> <li>double(M, D)</li></ul></li> <li>定点型（<strong>高精度</strong>）：dec/decimal(M, D)</li></ul> <p>​		其中（M, D)的形式在建表时使用，<strong>M指整个数值的长度（意义同整型的长度），即整数部分长度+小数部分长度；D指小数部分的长度</strong>。也可省略，省略时dec默认是（10，0），而float跟double会自适应插入的数。</p> <p>FLOAT 和 DOUBLE 为浮点类型，<strong>DECIMAL 为高精度小数类型。CPU 原生支持浮点运算，但是不支持 DECIMAl 类型的计算，因此 DECIMAL 的计算比浮点类型需要更高的代价</strong>。</p> <h3 id="字符型"><a href="#字符型" class="header-anchor">#</a> 字符型</h3> <p>字符型的分类：</p> <ul><li><p><strong>短文本</strong></p> <ul><li>char：<strong>建表时最大字符数可以省略，默认为1。该类型是固定长度的字符，即<span style="color:red;">不管存入的数据是多少个字符，占用的空间都是指定的最大字符数</span></strong>。</li> <li>varchar：<strong>建表时最大字符数<span style="color:red;">不可以省略</span>。该类型是可变长度的字符，即<span style="color:red;">占用的空间根据存入的数据自适应，多大就存多少空间</span>（存入数据&lt;=指定的最大字符数时）</strong>。</li> <li>VARCHAR 这种变长类型能够<strong>节省空间</strong>，因为只需要存储必要的内容。<strong>但是在执行 UPDATE 时可能会使行变得比原来长，当超出一个页所能容纳的大小时，就要执行额外的操作</strong>。MyISAM 会将行拆成不同的片段存储，而 InnoDB 则需要分裂页来使行放进页内。</li> <li>在进行存储和检索时，会保留 VARCHAR 末尾的空格，而会删除 CHAR 末尾的空格</li></ul></li> <li><p><strong>长文本</strong></p> <ul><li>text</li> <li>blob（存放较大的二进制）</li></ul></li> <li><p>其他</p> <ul><li><p>binary、varbinary：类似char跟varchar。用于保存较短的二进制。</p></li> <li><p>enum，用于保存枚举（只能保存一个数据），保存的值必须是枚举列表之一，枚举列表在建表时指定，eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> enumm<span class="token punctuation">(</span>
+	colum1 <span class="token keyword">ENUM</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> enumm <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> enumm <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#mysql不区分大小写，插入a、A效果一样</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> enumm <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#插入的值不是枚举列表之一，报错</span>
+</code></pre></div></li> <li><p>set，用于保存集合（可以保存多个数据），和enum类似，但可以保存多个值。eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> sett<span class="token punctuation">(</span>
+	s1 <span class="token keyword">SET</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">)</span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> sett <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'a,b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> sett <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'a,b,e'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#报错</span>
+</code></pre></div></li> <li><p>enum、set值占用的存储空间随列表值个数的增加而增加。</p></li></ul></li></ul> <h3 id="日期类型"><a href="#日期类型" class="header-anchor">#</a> 日期类型</h3> <p><strong>日期类型如下表</strong>：</p> <table><thead><tr><th>类型</th> <th>字节</th> <th>最小值</th> <th>最大值</th></tr></thead> <tbody><tr><td>DATE</td> <td>4</td> <td>1000-01-01（<strong>只有日期</strong>）</td> <td>9999-12-31</td></tr> <tr><td>DATETIME</td> <td>8</td> <td>1000-01-01 00:00:00（<strong>日期+时间</strong>）</td> <td>9999-12-31 23:59:59</td></tr> <tr><td>TIMESTAMP</td> <td>4</td> <td>19700101080001（<strong>日期+时间</strong>）</td> <td>2038 年的某个时刻</td></tr> <tr><td>TIME</td> <td>3</td> <td>-838:59:59（<strong>只有时间</strong>）</td> <td>838:59:59</td></tr> <tr><td>YEAR</td> <td>1</td> <td>1901（<strong>只有年</strong>）</td> <td>2155</td></tr></tbody></table> <h4 id="timestamp和datetime"><a href="#timestamp和datetime" class="header-anchor">#</a> <span style="color:red;">timestamp和datetime</span></h4> <ul><li><p><strong>时间范围不一样</strong>，<strong>TIMESTAMP 要小很多</strong> ，2038 年到期。timestamp 和 UNIX 时间戳相同，保存从 1970 年 1 月 1 日午夜（格林威治时间）以来的秒数，<strong>使用 4 个字节，只能表示从 1970 年到 2038 年</strong>。</p></li> <li><p><strong>对于TIMESTAMP，它<span style="color:red;">把客户端插入的时间从当前时区转化为UTC（世界标准时间）进行存储。查询时，将其又转化为客户端当前时区（即根据系统变量<code>time_zone</code>的值）对应的时间进行返回</span>。而对于DATETIME，不做任何改变，原样输入和输出</strong>。</p></li> <li><p>timestamp<strong>更能反应实际的日期</strong>。</p></li></ul> <p>eg：（tips：<strong>中国位于东八时区</strong>，当前时间是2020-7-15 21:40分左右）</p> <p>创建表并插入数据：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> timee<span class="token punctuation">(</span>
+	t1 <span class="token keyword">DATETIME</span><span class="token punctuation">,</span>
+	t2 <span class="token keyword">TIMESTAMP</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> timee <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>使用<code>select * from timee;</code>查询表，如下：</p> <p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210315154030410.png" alt="image-20210315154030410"></p> <p>设置当前时区为东九区：<code>SET time_zone='+9:00';</code> ，查询：</p> <p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210315154114696.png" alt="image-20210315154114696"></p> <p>可见，两次查询t1的两个值都不变，插入时的时间是什么，查询出的是什么。</p> <p><strong>而t2查询出的值是保存的UTC时间转化为当前时区的时间</strong>。<strong>比如第一行的t2值，插入数据时是在东八区，该时刻的东九区比东八区快一个小时</strong>。</p> <hr> <h2 id="mysql约束"><a href="#mysql约束" class="header-anchor">#</a> MySQL约束</h2> <h3 id="概述"><a href="#概述" class="header-anchor">#</a> 概述</h3> <p>​		约束就是一种限制，用于限制表中的数据，<strong>使数据有更好的准确和可靠性</strong>。</p> <p>MySQL中的常见约束：</p> <table><thead><tr><th>约束类型</th> <th>主键</th> <th>外键</th> <th>唯一</th> <th>非空</th> <th>自增</th> <th>默认值</th></tr></thead> <tbody><tr><td>关键字</td> <td>primary key</td> <td>foreign key</td> <td>unique</td> <td>not null</td> <td>auto_increment</td> <td>default</td></tr> <tr><td>含义</td> <td>相当于unique+<br>not null，一般用于id</td> <td>用于限制两个表的关系，<br>即从表的某个字段指向主表的某一字段</td> <td>唯一性、<br><strong>可以为空</strong></td> <td>不能为空</td> <td>自增</td> <td>指定字段的默认值</td></tr></tbody></table> <p>​		添加约束可以在<strong>创建表时或修改表时</strong>。</p> <p>​		<strong>约束又可分为列级约束和表级约束：除了外键，其他约束都支持列级约束；除了非空、默认以及自增，其他约束都支持表级约束</strong>。列级约束在创建表时<strong>在字段名+字段数据类型之后添加即可</strong>；表级约束在最底下声明，语法为：</p> <p><code>[CONSTRAINT constraint_name] CONSTRAINT_TYPE(colum_name)</code></p> <p><strong>主键、唯一键可以使用列级跟表级两种语法进行声明</strong>。</p> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#列级约束</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> major<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+	major_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span> <span class="token comment">#可以同时添加多个约束</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> stuinfo<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+	stu_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+	stu_number <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	majorid <span class="token keyword">INT</span> <span class="token punctuation">,</span>
+	<span class="token keyword">CONSTRAINT</span> fk_stuinfo_major <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>majorid<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> major<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token keyword">UNIQUE</span><span class="token punctuation">(</span>stu_number<span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="primary-key和unique"><a href="#primary-key和unique" class="header-anchor">#</a> <code>PRIMARY KEY</code>和<code>UNIQUE</code></h3> <ul><li>两者都保证了唯一性，但主键不能为空。</li> <li>一个表中只能有一个主键，但可以有多个unique。</li> <li><strong><span style="color:red;">unique约束的字段，是可以插入多个null值的</span></strong>。</li> <li><strong>可以多个字段组合成一个主键或unique</strong>。<strong><span style="color:red;">该方式不推荐</span></strong>。</li></ul> <p>关于上述组合的解释：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> test<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token punctuation">,</span>
+	sname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	number <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> number<span class="token punctuation">)</span>  <span class="token comment">#将id和number组合为一个主键</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'as'</span><span class="token punctuation">,</span><span class="token string">'john'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'as'</span><span class="token punctuation">,</span><span class="token string">'john'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'as'</span><span class="token punctuation">,</span><span class="token string">'mike'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'as'</span><span class="token punctuation">,</span><span class="token string">'john'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+</code></pre></div><p>前3条insert语句都能正确执行，第4条则报错。即对于组合的主键，<strong><span style="color:red;">只有组合的几个字段的值都相等才算相同</span></strong>。<strong>组合unique同理</strong>。</p> <h3 id="关于外键"><a href="#关于外键" class="header-anchor">#</a> 关于外键</h3> <p>外键的一些特点：</p> <ul><li><p>外键是在从表设置的。</p></li> <li><p><strong>从表的外键字段的数据类型与主表的关联列的类型要一致或可兼容</strong>。</p></li> <li><p>主表的关联列必须是一个key，<strong>一般都是主键</strong>，也可以是unique键。eg:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> main_table<span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> main_table<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token keyword">UNIQUE</span> <span class="token comment">#unique键</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> forei_table<span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> forei_table<span class="token punctuation">(</span>
+	mainid <span class="token keyword">INT</span><span class="token punctuation">,</span>
+	fname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>mainid<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> main_table<span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p><strong>外键字段的值可以为null</strong>，但<strong>要插入值时，在主表的关联字段必须有对应的数据存在，否则不可插入</strong>。</p></li> <li><p><strong><span style="color:red;">默认情况下，主表被关联字段的数据的更改或更新操作被拒绝</span></strong>。有以下几个操作可选（<strong>在从表设置外键时在语句的最后添加<code>ON DELETE</code>加上以下字段</strong>）：</p> <ul><li><code>cascade</code>，<strong>级联操作</strong>。主表数据被更新（主键值更新），从表也被更新（外键值更新）。主表记录被删除，从表相关记录也被删除。</li> <li><code>set null</code>，<strong>置null</strong>。<strong>主表数据被更新（主键值更新），从表的外键被设置为null。主表记录被删除，从表相关记录外键被设置成null</strong>。注意，要求该外键列没有not null属性约束。</li> <li><code>restrict</code>，拒绝主表的外键关联字段的删除和更新。（<strong>默认</strong>）</li></ul> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> stu<span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> stu<span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+	stuname <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	major_id <span class="token keyword">INT</span><span class="token punctuation">,</span>
+	<span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>major_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> major<span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></li> <li><p><strong>外键只被InnoDB存储引擎所支持。其他引擎是不支持的</strong>。</p></li></ul> <h3 id="关于auto-increment"><a href="#关于auto-increment" class="header-anchor">#</a> 关于auto_increment</h3> <ul><li>对有auto_increment约束的字段插入值，比如插入10，那么下一个序号将会是11。</li> <li><strong>auto_increment必须和key搭配，如主键，唯一键</strong>。</li> <li>一个表只能有一个auto_increment。</li> <li>auto_increment只能用于数值型字段。</li> <li>标识列可以通过<code>SET auto_increment_increment=3;</code>设置步长，也可以通过手动插入值设置起始值。</li></ul> <hr> <h2 id="视图"><a href="#视图" class="header-anchor">#</a> 视图</h2> <h3 id="概述-2"><a href="#概述-2" class="header-anchor">#</a> 概述</h3> <p>（部分摘抄自https://shockerli.net/post/1000-line-mysql-note/）</p> <p>​		视图是一个虚拟表，其内容由查询定义。同真实的表一样，<strong>视图包含一系列带有名称的列和行数据</strong>。但是，<strong>视图并不在数据库中以存储的数据值集形式存在</strong>。行和列数据来自由定义视图的查询所引用的表，<strong>并且在引用视图时动态生成</strong>。</p> <p>​		<strong>视图具有表结构文件，但不存在数据文件</strong>。对其中所引用的基础表来说，视图的作用类似于筛选。通过视图进行查询没有任何限制，通过它们进行数据修改时的限制也很少。视图是存储在数据库中的查询的sql语句，它主要出于两种原因：<strong>安全原因</strong>，视图可以隐藏一些数据，如：社会保险基金表，可以用视图只显示姓名，地址，而不显示社会保险号和工资数等，另一原因是可<strong>使复杂的查询易于理解和使用</strong>。</p> <p>​		可简单的这样理解：<strong>视图存储的是sq逻辑，即sql语句，当要使用视图时根据该语句动态生成结果集</strong>。</p> <h3 id="视图的创建和使用"><a href="#视图的创建和使用" class="header-anchor">#</a> 视图的创建和使用</h3> <p>创建视图的语法：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> view_name
+<span class="token keyword">AS</span>
+查询语句<span class="token punctuation">;</span> <span class="token comment">-- 一般是涉及多个表的复杂的查询语句</span>
+
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> view_name<span class="token punctuation">;</span> <span class="token comment">-- 显示视图结构</span>
+</code></pre></div><p>创建视图后，使用视图类似于使用表。</p> <p>eg:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> myv1
+<span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span>department_id<span class="token operator">=</span>d<span class="token punctuation">.</span>department_id
+<span class="token keyword">JOIN</span> jobs j <span class="token keyword">ON</span> j<span class="token punctuation">.</span>job_id <span class="token operator">=</span> e<span class="token punctuation">.</span>job_id<span class="token punctuation">;</span>
+
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> myv1 <span class="token keyword">WHERE</span> last_name <span class="token operator">LIKE</span> <span class="token string">'%a%'</span><span class="token punctuation">;</span>
+
+</code></pre></div><h3 id="视图的修改"><a href="#视图的修改" class="header-anchor">#</a> 视图的修改</h3> <p>两种方式：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#1(如果视图不存在会创建；视图存在就代替)</span>
+<span class="token keyword">CREATE</span> <span class="token operator">OR</span> <span class="token keyword">REPLACE</span> <span class="token keyword">VIEW</span> view_name
+<span class="token keyword">as</span>
+查询语句<span class="token punctuation">;</span>
+
+eg:
+<span class="token keyword">CREATE</span> <span class="token operator">OR</span> <span class="token keyword">REPLACE</span> <span class="token keyword">VIEW</span> myv1
+<span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>d<span class="token punctuation">.</span>manager_id<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span>department_id<span class="token operator">=</span>d<span class="token punctuation">.</span>department_id
+<span class="token keyword">JOIN</span> jobs j <span class="token keyword">ON</span> j<span class="token punctuation">.</span>job_id <span class="token operator">=</span> e<span class="token punctuation">.</span>job_id<span class="token punctuation">;</span>
+
+
+<span class="token comment">#2</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">VIEW</span> view_name
+<span class="token keyword">AS</span>
+查询语句<span class="token punctuation">;</span>
+
+eg:
+<span class="token keyword">ALTER</span> <span class="token keyword">VIEW</span> myv1
+<span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>department_name<span class="token punctuation">,</span>job_title
+<span class="token keyword">FROM</span> employees e
+<span class="token keyword">JOIN</span> departments d <span class="token keyword">ON</span> e<span class="token punctuation">.</span>department_id<span class="token operator">=</span>d<span class="token punctuation">.</span>department_id
+<span class="token keyword">JOIN</span> jobs j <span class="token keyword">ON</span> j<span class="token punctuation">.</span>job_id <span class="token operator">=</span> e<span class="token punctuation">.</span>job_id<span class="token punctuation">;</span>
+</code></pre></div><h3 id="视图的删除和查看"><a href="#视图的删除和查看" class="header-anchor">#</a> 视图的删除和查看</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#删除</span>
+<span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> view1_name<span class="token punctuation">,</span>view2_name<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+
+<span class="token comment">#查看结构</span>
+<span class="token keyword">DESC</span> view_name<span class="token punctuation">;</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> view_name<span class="token punctuation">;</span>
+</code></pre></div><h3 id="视图更新"><a href="#视图更新" class="header-anchor">#</a> 视图更新</h3> <p>​		<strong>视图的可更新性和视图中查询的定义有关系</strong>，<strong>以下类型的视图是不能更新的</strong></p> <ul><li>包含以下关键字的sql语句：分组函数、distinct、group by、having、union或者uunion all</li> <li>常量视图</li> <li>Select中包含子查询</li> <li>Join</li> <li>from一个不能更新的视图</li> <li>where子句的子查询引用了from子句中的表</li></ul> <p><strong>一般情况下视图都是不可更新的</strong>。</p> <p>可更新视图的简单示例：tips：<strong>更新会作用到原表</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> myv3
+<span class="token keyword">AS</span> 
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span> phone_number
+<span class="token keyword">FROM</span> employees <span class="token punctuation">;</span>
+
+<span class="token comment">#insert</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> myv3 <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'许褚'</span><span class="token punctuation">,</span><span class="token string">'888888'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">#update</span>
+<span class="token keyword">UPDATE</span> myv3 <span class="token keyword">SET</span> last_name<span class="token operator">=</span><span class="token string">'典韦'</span> <span class="token keyword">WHERE</span> last_name<span class="token operator">=</span><span class="token string">'许褚'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#delete</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> myv3 <span class="token keyword">WHERE</span> last_name<span class="token operator">=</span><span class="token string">'典韦'</span><span class="token punctuation">;</span>
+</code></pre></div><p>对视图进行修改需要有权限。</p> <h3 id="视图与表"><a href="#视图与表" class="header-anchor">#</a> 视图与表</h3> <ul><li>两者创建的语法不同。</li> <li>从占用存储空间方面：<strong>视图只是保存了sql语句，只占用了很小的空间；而表保存了数据，占用空间较大</strong>。</li> <li>视图一般都不允许增删改查；表允许。</li></ul> <hr> <h2 id="变量"><a href="#变量" class="header-anchor">#</a> 变量</h2> <p>MySQL变量的分类：</p> <ul><li>系统变量
+<ul><li>全局变量</li> <li>会话变量</li></ul></li> <li>自定义变量
+<ul><li>用户变量</li> <li>局部变量</li></ul></li></ul> <h3 id="系统变量"><a href="#系统变量" class="header-anchor">#</a> 系统变量</h3> <p>​		系统变量是由MySQL系统提供的，用于设置服务器的某些功能。<strong>分为全局（global）变量和会话（session）变量</strong>。两者主要区别是作用域不同，<strong>全局变量的作用域是所有会话（连接），<span style="color:red;">但每次重启MySQL服务器都会重置</span>；而会话变量只针对当前会话有效</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--（对于会话变量，session可省略）</span>
+
+<span class="token comment">--查看所有全局/会话变量</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">GLOBAL</span><span class="token operator">|</span><span class="token keyword">SESSION</span> VARIABLES<span class="token punctuation">;</span>
+
+<span class="token comment">--添加筛选条件</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">GLOBAL</span> VARIABLES <span class="token operator">LIKE</span> condition<span class="token punctuation">;</span>
+
+<span class="token comment">--查看单个变量</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@global</span><span class="token operator">|</span><span class="token punctuation">[</span><span class="token keyword">session</span><span class="token punctuation">]</span><span class="token punctuation">.</span>变量名
+
+<span class="token comment">--修改</span>
+<span class="token keyword">SET</span> <span class="token keyword">GLOBAL</span><span class="token operator">|</span><span class="token keyword">SESSION</span> 变量名<span class="token operator">=</span>new_value<span class="token punctuation">;</span>
+<span class="token keyword">SET</span> @<span class="token variable">@global</span><span class="token operator">|</span><span class="token punctuation">[</span><span class="token keyword">session</span><span class="token punctuation">]</span><span class="token punctuation">.</span>变量名<span class="token operator">=</span>new_value<span class="token punctuation">;</span>
+
+
+eg:
+<span class="token keyword">SHOW</span> <span class="token keyword">GLOBAL</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'%tx_is%'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@global.autocommit</span><span class="token punctuation">;</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">GLOBAL</span> VARIABLES <span class="token operator">LIKE</span> <span class="token string">'%char%'</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="自定义变量"><a href="#自定义变量" class="header-anchor">#</a> 自定义变量</h3> <p><strong>用户变量针对当前会话有效</strong>，即与会话变量作用域相同。<strong>用户变量可以应用在begin-end里面以及外面</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--声明(变量名使用@开头，避免与系统变量产生冲突)</span>
+<span class="token keyword">SET</span> <span class="token variable">@variable_name</span><span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> <span class="token variable">@variable_name</span>:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token variable">@variable_name</span>:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+
+<span class="token comment">--修改（与声明同）</span>
+<span class="token comment">--1</span>
+<span class="token keyword">SET</span> <span class="token variable">@variable_name</span><span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> <span class="token variable">@variable_name</span>:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token variable">@variable_name</span>:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token comment">--2</span>
+<span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>只能有一个字段<span class="token punctuation">)</span> <span class="token keyword">INTO</span> <span class="token variable">@variable_name</span>
+<span class="token keyword">FROM</span> table_name <span class="token punctuation">[</span><span class="token keyword">where</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+
+<span class="token comment">--使用</span>
+<span class="token keyword">SELECT</span> <span class="token variable">@variable_name</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>局部变量只在begin-end块中有效</strong>。在块的开头声明。一般不使用@。<strong>局部变量应用在存储过程、函数等</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--声明(可不加@)</span>
+<span class="token keyword">DECLARE</span> variable_name DATATYPE <span class="token punctuation">[</span><span class="token keyword">DEFAULT</span> <span class="token keyword">value</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">--修改</span>
+<span class="token comment">--1(使用select加@)</span>
+<span class="token keyword">SET</span> variable_name<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> variable_name:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token variable">@variable_name</span>:<span class="token operator">=</span><span class="token keyword">value</span><span class="token punctuation">;</span>
+<span class="token comment">--2</span>
+<span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>只能有一个字段<span class="token punctuation">)</span> <span class="token keyword">INTO</span> variable_name
+<span class="token keyword">FROM</span> table_name <span class="token punctuation">[</span><span class="token keyword">where</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+
+<span class="token comment">--使用</span>
+<span class="token keyword">SELECT</span> variable_name<span class="token punctuation">;</span>
+</code></pre></div><p>eg：</p> <div class="language- extra-class"><pre class="language-text"><code>--user variable
+SET @m=1;
+SET @n=2;
+SET @sum=@m+@n;
+SELECT @sum;
+
+--局部变量
+。。
+</code></pre></div><h2 id="存储过程"><a href="#存储过程" class="header-anchor">#</a> 存储过程</h2> <p>​		存储过程是一段可执行性sql代码的集合。相比函数，更偏向于业务逻辑。实际上存储过程即类似于Java中的方法。</p> <p>关于<code>DELIMITER</code>：<strong>该关键字用于指定命令结束符号，即告诉MySQL当遇见结束符时表示命令结束，可以执行</strong>。默认情况下是<code>;</code>。<strong>在某些情况下</strong>，不止要执行一条SQL语句，但又需要<code>;</code>作为各语句的结束，这时可使用该关键字指定其他的结束符。下面的存储过程创建即使用了这一点。</p> <p><strong>创建存储过程前需要先使用<code>DELIMITER</code>关键字指定除<code>;</code>外的结束符</strong>。</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--语法</span>
+<span class="token comment">--若过程体只有一句SQL语句，begin-end可以省略</span>
+<span class="token comment">--过程体的每条SQL语句必须以分号结尾</span>
+<span class="token keyword">DELIMITER</span> $<span class="token punctuation">(</span>可使用其他符号<span class="token punctuation">)</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> 过程名 <span class="token punctuation">(</span>参数列表<span class="token punctuation">)</span>
+<span class="token keyword">BEGIN</span>
+    过程体
+<span class="token keyword">END</span> $
+
+<span class="token comment">--参数列表的每个参数定义包含3个部分</span>
+<span class="token operator">IN</span><span class="token operator">|</span><span class="token keyword">OUT</span><span class="token operator">|</span><span class="token keyword">INOUT</span> 参数名 数据类型
+<span class="token comment">--其中</span>
+<span class="token operator">IN</span>      输入：在调用过程中，将数据输入到过程体内部的参数
+<span class="token keyword">OUT</span>     输出：在调用过程中，将过程体处理完的结果返回到客户端
+<span class="token keyword">INOUT</span>   输入输出：既可输入，也可输出
+
+
+<span class="token comment">--调用</span>
+<span class="token keyword">CALL</span> 存储过程名<span class="token punctuation">(</span>实参列表<span class="token punctuation">)</span>
+
+<span class="token comment">--删除存储过程</span>
+<span class="token keyword">DROP</span> <span class="token keyword">PROCEDURE</span> procedure_name<span class="token punctuation">;</span>
+
+<span class="token comment">--查看存储过程的结构</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> procedure_name<span class="token punctuation">;</span>
+</code></pre></div><p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">DELIMITER</span> $
+<span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> insert_to_major<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">BEGIN</span>
+	<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> major <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span> $
+
+<span class="token keyword">CALL</span> insert_to_major<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">--判断登录是否成功</span>
+<span class="token keyword">DELIMITER</span> $
+<span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> login<span class="token punctuation">(</span><span class="token operator">IN</span> username <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">IN</span> password <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">BEGIN</span>
+	<span class="token keyword">DECLARE</span> result <span class="token keyword">INT</span> <span class="token keyword">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">INTO</span> result
+	<span class="token keyword">FROM</span> admin <span class="token keyword">WHERE</span> admin<span class="token punctuation">.</span><span class="token punctuation">`</span>username<span class="token punctuation">`</span><span class="token operator">=</span>username <span class="token operator">AND</span> admin<span class="token punctuation">.</span><span class="token punctuation">`</span>password<span class="token punctuation">`</span><span class="token operator">=</span>password<span class="token punctuation">;</span>
+	
+	<span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span>result<span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token string">'登录成功'</span><span class="token punctuation">,</span><span class="token string">'登录失败'</span><span class="token punctuation">)</span> <span class="token string">'登录情况'</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span> $
+
+<span class="token keyword">CALL</span> login<span class="token punctuation">(</span><span class="token string">'吴彦祖'</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">--根据女神名获取男朋友名字（使用了in out）</span>
+<span class="token keyword">DELIMITER</span> $
+<span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> get_boyfriend<span class="token punctuation">(</span><span class="token operator">IN</span> girl_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">OUT</span> boyfriend <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">BEGIN</span>
+	<span class="token keyword">SELECT</span> bo<span class="token punctuation">.</span>boyName <span class="token keyword">INTO</span> boyfriend
+	<span class="token keyword">FROM</span> boys bo 
+	<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> beauty b <span class="token keyword">ON</span> b<span class="token punctuation">.</span>boyfriend_id<span class="token operator">=</span>bo<span class="token punctuation">.</span>id
+	<span class="token keyword">WHERE</span> b<span class="token punctuation">.</span>name<span class="token operator">=</span>girl_name<span class="token punctuation">;</span>
+<span class="token keyword">END</span> $
+
+<span class="token keyword">SET</span> <span class="token variable">@bname</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token keyword">CALL</span> get_boyfriend<span class="token punctuation">(</span><span class="token string">'王语嫣'</span><span class="token punctuation">,</span><span class="token variable">@bname</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token variable">@bname</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="函数"><a href="#函数" class="header-anchor">#</a> 函数</h2> <h3 id="自定义函数"><a href="#自定义函数" class="header-anchor">#</a> 自定义函数</h3> <p>MySQL的函数有系统自带（内置函数）的，<strong>也可以自定义函数</strong>。函数于存储体类似，都是一组SQL语句的集合。</p> <p><strong>其与存储体的区别如下</strong>：</p> <ul><li>存储体可以有0或多个返回值。适合批量操作。</li> <li>函数有且仅有一个返回值。适合用于对数据处理后返回一个数据。</li></ul> <p>(部分摘抄自https://shockerli.net/post/1000-line-mysql-note/)</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- 创建函数</span>
+<span class="token keyword">DELIMITER</span> $<span class="token punctuation">(</span>可使用其他符号<span class="token punctuation">)</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> function_name <span class="token punctuation">(</span>参数列表<span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> 返回值类型
+<span class="token keyword">BEGIN</span>
+	函数体
+<span class="token keyword">END</span> $
+<span class="token operator">-</span> 函数名，应该合法的标识符，并且不应该与已有的关键字冲突。
+<span class="token operator">-</span> 一个函数应该属于某个数据库，可以使用db_name<span class="token punctuation">.</span>funciton_name的形式执行当前函数所属数据库，否则为当前数据库。
+<span class="token operator">-</span> 参数部分，由<span class="token string">&quot;参数名&quot;</span>和<span class="token string">&quot;参数类型&quot;</span>组成。多个参数用逗号隔开。
+<span class="token operator">-</span> 函数体由多条可用的mysql语句，流程控制，变量声明等语句构成。
+<span class="token operator">-</span> 若函数体只有一条语句，可以省略<span class="token keyword">begin</span><span class="token operator">-</span><span class="token keyword">end</span>
+<span class="token operator">-</span> 必须有 <span class="token keyword">return</span> 返回值语句。
+
+<span class="token comment">-- 调用</span>
+<span class="token keyword">SELECT</span> function_name<span class="token punctuation">(</span>实参列表<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 删除</span>
+<span class="token keyword">DROP</span> <span class="token keyword">FUNCTION</span> <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> function_name<span class="token punctuation">;</span>
+    
+<span class="token comment">-- 查看</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">FUNCTION</span> <span class="token keyword">STATUS</span> <span class="token operator">LIKE</span> <span class="token string">'partten'</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> function_name<span class="token punctuation">;</span>
+    
+<span class="token comment">-- 修改</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">FUNCTION</span> function_name 函数选项
+</code></pre></div><p>eg:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#根据员工名获取工资</span>
+<span class="token keyword">DELIMITER</span> $
+<span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getsal<span class="token punctuation">(</span>empName <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">DOUBLE</span>
+<span class="token keyword">BEGIN</span>
+	<span class="token keyword">SET</span> <span class="token variable">@sal</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">SELECT</span> salary <span class="token keyword">INTO</span> <span class="token variable">@sal</span>
+	<span class="token keyword">FROM</span> employees
+	<span class="token keyword">WHERE</span> last_name<span class="token operator">=</span>empName<span class="token punctuation">;</span>
+	
+	<span class="token keyword">RETURN</span> <span class="token variable">@sal</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span> $
+
+<span class="token keyword">SELECT</span> getsal<span class="token punctuation">(</span><span class="token string">'Hunold'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="内置函数"><a href="#内置函数" class="header-anchor">#</a> 内置函数</h3> <p>​		MySQL内置函数有单行函数和分组函数：</p> <ul><li><strong>单行函数</strong>：作用范围只有一行，即一个记录。</li> <li><strong>分组函数</strong>：<strong>作用的范围是多个记录（即一列）</strong>，对多个记录进行统计，再返回一个结果。又称统计函数。</li></ul> <h4 id="单行函数-字符函数"><a href="#单行函数-字符函数" class="header-anchor">#</a> 单行函数-字符函数</h4> <p><strong><span style="font-size:25px;"><code>LENGTH(str)</code></span></strong></p> <p>返回str的长度（字节数），其中，若使用的是<strong>utf8字符集</strong>，<strong>则一个英文占1个字节，一个中文占3个字节</strong>。</p> <p>eg：</p> <p><code>SELECT LENGTH('不摇碧莲');</code> 返回12.
+<code>SELECT LENGTH('jonh');</code>  返回4.</p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>UPPER(str)</code>、<code>LOWER(str)</code></span></strong></p> <p>转化为大写、小写。eg：</p> <p><code>SELECT UPPER('john');</code> <code>SELECT LOWER('MIKE');</code></p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>CONCAT(str1,str2,...)</code></span></strong></p> <p>拼接字符。</p> <p><code>SELECT CONCAT(last_name,'_',first_name) 'name' FROM employees;</code> <code>SELECT CONCAT(LOWER(last_name),'_',UPPER(first_name)) 'name' FROM employees;</code> （函数嵌套）</p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>SUBSTR substring</code></span></strong></p> <p><strong>该函数有4个重载的形式。<span style="color:red;">sql中的索引从1开始</span></strong>。</p> <p><code>substr(str,start)</code>：</p> <p><code>substr(str FROM pos)</code> 	返回从pos开始的子字符串</p> <p><code>substr(str, pos, length)</code> 	返回从索引pos开始，长度为length的子字符串</p> <p><code>substr(str FROM pos FOR length)</code></p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> SUBSTR<span class="token punctuation">(</span><span class="token string">'一二三四五六'</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> SUBSTR<span class="token punctuation">(</span><span class="token string">'一二三四五六'</span> <span class="token keyword">FROM</span> <span class="token number">3</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>  <span class="token comment">#三四五六</span>
+<span class="token keyword">SELECT</span> SUBSTR<span class="token punctuation">(</span><span class="token string">'一二三四五六'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> SUBSTR<span class="token punctuation">(</span><span class="token string">'一二三四五六'</span> <span class="token keyword">FROM</span> <span class="token number">1</span> <span class="token keyword">FOR</span> <span class="token number">3</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+</code></pre></div><p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>INSTR(str,substr)</code></span></strong></p> <p><strong>返回子串第一次出现的位置，若不包含该子串，返回0</strong>。</p> <p><code>SELECT INSTR('一二三四五六', '四五六') output; #4</code> <code>SELECT INSTR('一二三四五六', '四六') output; #0</code></p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>TRIM([deleteStr] FROM str)</code></span></strong></p> <p><strong>去掉前后的空格或指定字符（中间的字符不受影响）</strong>。eg：</p> <p><code>SELECT TRIM(' 啊哈哈哈 ') output;</code> <code>SELECT TRIM('a' FROM 'aaaaa啊哈哈aaa') output;</code></p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>LPAD(str,length,padstr)</code></span></strong></p> <p><strong>用padstr对str进行左填充达到length长度</strong>。<code>rpad()</code>同理。</p> <p>eg：</p> <p><code>SELECT LPAD('张三',10,'a') output;</code>  # aaaaaaaa张三</p> <p><code>SELECT RPAD('张三',10,'a') output;</code>  # 张三aaaaaaaa</p> <p><strong>其中，若是length参数小于str的长度，相当于substr(str,1,length)</strong>，对lpad、rpad都一样。eg：</p> <p><code>SELECT LPAD('张三四',2,'a') output;</code>  # 张三</p> <p><code>SELECT RPAD('张三四',2,'a') output;</code>  # 张三</p> <p><code>----------------------------------------------------------------------------------</code></p> <p><strong><span style="font-size:25px;"><code>REPLACE(str,fromStr,toStr)</code></span></strong></p> <p>替换。eg：</p> <p><code>SELECT REPLACE('小明爱上了小红','小红','小绿') output;</code>  #小红爱上了小绿</p> <h4 id="单行函数-数字函数"><a href="#单行函数-数字函数" class="header-anchor">#</a> 单行函数-数字函数</h4> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#四舍五入</span>
+<span class="token keyword">SELECT</span> <span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token number">1.56</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment"># 2</span>
+<span class="token keyword">SELECT</span> <span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1.54</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment">#-2</span>
+<span class="token keyword">SELECT</span> <span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token number">1.567</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment"># 1.57</span>
+<span class="token comment">#向上取整</span>
+<span class="token keyword">SELECT</span> CEIL<span class="token punctuation">(</span><span class="token number">1.2</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment">#2</span>
+<span class="token keyword">SELECT</span> CEIL<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1.1</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment"># -1</span>
+<span class="token comment">#向下取整</span>
+<span class="token keyword">SELECT</span> FLOOR<span class="token punctuation">(</span><span class="token number">1.2</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> FLOOR<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1.2</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment"># -2</span>
+<span class="token comment">#截断</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">TRUNCATE</span><span class="token punctuation">(</span><span class="token number">1.1999</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment"># 1.1，没有四舍五入</span>
+<span class="token comment">#模运算</span>
+<span class="token keyword">SELECT</span> <span class="token function">MOD</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span> <span class="token comment">#10%3</span>
+<span class="token comment">#生成0-1的任意数以及0-100的任意数</span>
+<span class="token keyword">SELECT</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="单行函数-日期函数"><a href="#单行函数-日期函数" class="header-anchor">#</a> 单行函数-日期函数</h4> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">#返回当前系统日期+时间</span>
+<span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token string">'time'</span><span class="token punctuation">;</span>
+<span class="token comment">#返回当前系统日期</span>
+<span class="token keyword">SELECT</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token string">'time'</span><span class="token punctuation">;</span>
+<span class="token comment">#返回当前系统时间</span>
+<span class="token keyword">SELECT</span> CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token string">'time'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#截取日期中的年、月、日day、小时hour、分min?、秒second</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'year'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span><span class="token string">&quot;1998-12-12&quot;</span><span class="token punctuation">)</span> <span class="token string">'year'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span> <span class="token string">'year'</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">MINUTE</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'minute'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'month'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> MONTHNAME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'monthname'</span><span class="token punctuation">;</span> <span class="token comment"># 获取月的英文名称</span>
+
+<span class="token comment">#将字符串根据指定格式转化为日期，具体格式见下表</span>
+<span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'1999-10-22'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> employees <span class="token keyword">WHERE</span> hiredate<span class="token operator">=</span>STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'4-3 1992'</span><span class="token punctuation">,</span><span class="token string">'%c-%d %Y'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#将日期根据指定格式转化为字符，</span>
+<span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'%Y年%m月%d日'</span><span class="token punctuation">)</span> output<span class="token punctuation">;</span>
+<span class="token comment">#查询有奖金的员工名跟入职日期(xx月/xx日 xx年的格式)</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span> DATE_FORMAT<span class="token punctuation">(</span>hiredate<span class="token punctuation">,</span><span class="token string">'%m月/%d日 %Y年'</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> commission_pct <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span> 
+<span class="token comment">#计算两个日期之间相差的天数</span>
+<span class="token keyword">SELECT</span> DATEDIFF<span class="token punctuation">(</span><span class="token function">MAX</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+</code></pre></div><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20200526104150723.png" alt="image-20200526104150723" style="zoom:50%;"> <h4 id="单行函数-其他函数"><a href="#单行函数-其他函数" class="header-anchor">#</a> 单行函数-其他函数</h4> <div class="language-sql extra-class"><pre class="language-sql"><code> <span class="token keyword">SELECT</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#当前版本</span>
+ <span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#当前数据库名</span>
+ <span class="token keyword">SELECT</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">#当前用户名</span>
+ <span class="token comment">#返回字符串的加密形式、md5加密形式</span>
+ <span class="token keyword">SELECT</span> PASSWORD<span class="token punctuation">(</span><span class="token string">'objk'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>MD5<span class="token punctuation">(</span><span class="token string">'ojbk'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+ <span class="token comment">--若exp1为null，返回exp2值，否则返回exp1的值。</span>
+ IFNULL<span class="token punctuation">(</span>exp1<span class="token punctuation">,</span> exp2<span class="token punctuation">)</span>
+ 
+ <span class="token comment">-- 若expr为真，返回1，否则0</span>
+ isnull<span class="token punctuation">(</span>expr<span class="token punctuation">)</span>
+</code></pre></div><h4 id="单行函数-流程控制函数"><a href="#单行函数-流程控制函数" class="header-anchor">#</a> 单行函数-流程控制函数</h4> <p><strong><span style="font-size:25px;"><code>if(condition,expr1,expr2)</code></span></strong></p> <p><strong>若条件为真，返回expr1，否则返回expr2</strong>。</p> <p>eg：</p> <p><code>SELECT last_name,IF(commission_pct IS NOT NULL,'有奖金','没奖金') 备注 FROM employees;</code></p> <h4 id="分组函数"><a href="#分组函数" class="header-anchor">#</a> 分组函数</h4> <p>常见的分组函数有：</p> <p><strong><code>sum(expr)</code> 求和 </strong></p> <p><strong><code>avg(expr)</code> 求平均值 </strong></p> <p><strong><code>max(expr)</code> 求最大值 </strong></p> <p><strong><code>min(expr)</code> 求最小值 </strong></p> <p><strong><code>count(expr)</code> 求数量</strong></p> <p>其中：</p> <ul><li><strong>分组函数的参数一般为字段名</strong>。</li> <li>sum、avg一般<strong>只接受数值型参数</strong>，max、min、count<strong>可接受任何类型的参数</strong>。</li> <li><strong>5个函数对null值忽略</strong>，即对null值不统计、不计算。</li> <li>可与<code>distinct</code>配合使用，<strong>会对结果先去重，再进行函数计算</strong>。</li> <li><strong>与分组函数一同查询的字段应有限制（分组函数查询结果只有一个值，而查询字段可能会有多个值），一般要求是<code>group by</code>后的字段</strong>。</li></ul> <p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token string">'sum'</span><span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token string">'average'</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token string">'min'</span><span class="token punctuation">,</span><span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token string">'max'</span><span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token string">'count'</span>
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>last_name<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>last_name<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>hiredate<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> salary<span class="token punctuation">)</span> 去重<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> 不去重 <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span><span class="token comment">##</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> commission_pct<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">COUNT</span><span class="token punctuation">(</span>commission_pct<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+</code></pre></div><p><strong><code>COUNT()</code>函数</strong></p> <p>​		在5个函数中，<code>count()</code>函数有些许不同。</p> <p>​		<strong>可使用<code>count(*)</code>跟<code>count(1)</code>来统计一个表有多少个记录。使用后者相当于在每个记录中添加一个名为1的字段（即新添加一个列），并统计共有多少行</strong>。</p> <p>tips：myisam引擎下，<code>count(*)</code>效率更高；innodb引擎下，两者效率相差不多。</p> <h2 id="流程控制"><a href="#流程控制" class="header-anchor">#</a> 流程控制</h2> <h3 id="分支结构"><a href="#分支结构" class="header-anchor">#</a> 分支结构</h3> <h4 id="if函数"><a href="#if函数" class="header-anchor">#</a> if函数</h4> <p>见<code>函数\内置函数</code>第5点。</p> <h4 id="case-when"><a href="#case-when" class="header-anchor">#</a> <code>case..when</code></h4> <p><strong>该语法有两种使用形式，可嵌套在select中（此时整个case-when执行后返回一个值），也可单独使用</strong>。</p> <p><strong>第一钟类似Java的<code>swich..case</code></strong>。具体语法：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">case</span> 要判断的字段、表达式
+
+<span class="token keyword">when</span> 常量<span class="token number">1</span> <span class="token keyword">then</span> 要显示的值<span class="token number">1</span>或语句<span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token keyword">when</span> 常量n <span class="token keyword">then</span> 要显示的值n或语句n<span class="token punctuation">;</span>
+
+<span class="token keyword">else</span> 默认显示
+
+<span class="token keyword">end</span>
+</code></pre></div><p>eg，根据部门id的不同，显示不同的最终工资：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>salary 原工资<span class="token punctuation">,</span>department_id<span class="token punctuation">,</span>
+<span class="token keyword">CASE</span> department_id
+<span class="token keyword">WHEN</span> <span class="token number">30</span> <span class="token keyword">THEN</span> salary<span class="token operator">*</span><span class="token number">1.1</span>
+<span class="token keyword">WHEN</span> <span class="token number">40</span> <span class="token keyword">THEN</span> salary<span class="token operator">*</span><span class="token number">1.2</span>
+<span class="token keyword">WHEN</span> <span class="token number">50</span> <span class="token keyword">THEN</span> salary<span class="token operator">*</span><span class="token number">1.3</span>
+<span class="token keyword">ELSE</span> salary
+<span class="token keyword">END</span> <span class="token keyword">AS</span> 最终工资
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+</code></pre></div><p>**第二种用法类似多层if，**语法如下：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">case</span> 
+
+<span class="token keyword">when</span> condition1 <span class="token keyword">then</span> 要显示的值<span class="token number">1</span>或语句<span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token keyword">when</span> condition_n <span class="token keyword">then</span> 要显示的值n或语句n<span class="token punctuation">;</span>
+
+<span class="token keyword">else</span> 默认显示
+
+<span class="token keyword">end</span>
+</code></pre></div><p>eg：</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--嵌套在select中使用</span>
+<span class="token comment">--根据工资的大小区间分多个工资级别：</span>
+<span class="token keyword">SELECT</span> last_name<span class="token punctuation">,</span>salary<span class="token punctuation">,</span>
+<span class="token keyword">CASE</span>
+<span class="token keyword">WHEN</span> salary<span class="token operator">&gt;</span><span class="token number">20000</span> <span class="token keyword">THEN</span> <span class="token string">'A'</span>
+<span class="token keyword">WHEN</span> salary<span class="token operator">&gt;</span><span class="token number">15000</span> <span class="token keyword">THEN</span> <span class="token string">'B'</span>
+<span class="token keyword">WHEN</span> salary<span class="token operator">&gt;</span><span class="token number">10000</span> <span class="token keyword">THEN</span> <span class="token string">'C'</span>
+<span class="token keyword">ELSE</span> <span class="token string">'D'</span>
+<span class="token keyword">END</span> <span class="token keyword">AS</span> 工资级别
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+
+<span class="token comment">--在存储过程中使用</span>
+<span class="token comment">--根据工资显示工资级别</span>
+<span class="token keyword">DELIMITER</span> $
+<span class="token keyword">CREATE</span> <span class="token keyword">PROCEDURE</span> testcase<span class="token punctuation">(</span><span class="token operator">IN</span> score <span class="token keyword">INT</span><span class="token punctuation">)</span>
+<span class="token keyword">BEGIN</span>
+	<span class="token keyword">CASE</span>
+	<span class="token keyword">WHEN</span> score<span class="token operator">&gt;=</span><span class="token number">90</span> <span class="token operator">AND</span> score<span class="token operator">&lt;=</span><span class="token number">100</span> <span class="token keyword">THEN</span> <span class="token keyword">SELECT</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+	<span class="token keyword">WHEN</span> score<span class="token operator">&gt;=</span><span class="token number">80</span> <span class="token keyword">THEN</span> <span class="token keyword">SELECT</span> <span class="token string">'B'</span><span class="token punctuation">;</span>
+	<span class="token keyword">WHEN</span> score<span class="token operator">&gt;=</span><span class="token number">60</span> <span class="token keyword">THEN</span> <span class="token keyword">SELECT</span> <span class="token string">'C'</span><span class="token punctuation">;</span>
+	<span class="token keyword">ELSE</span> <span class="token keyword">SELECT</span> <span class="token string">'D'</span><span class="token punctuation">;</span>
+	<span class="token keyword">END</span> <span class="token keyword">CASE</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span> $ 
+
+<span class="token keyword">CALL</span> testcase<span class="token punctuation">(</span><span class="token number">95</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>两种case-when的特点：</p> <ul><li><strong>可以作为表达式， 嵌套在其他语句中使用（此时整个CASE-WHEN执行完毕后返回一个值，如第一种用法的例子）</strong>；可以作为独立的语句，但必须放在begin-end中。</li> <li><strong>如果WHEN中的值满足或条件成立， 则执行对应的THEN后面的语句，并且结束CASE</strong>。如果都不满足， 则执行ELSE中的语句或值。</li> <li>ELSE可以省略， 如果ELSE省略了， <strong>并且所有WHEN条件都不满足， 则返回NULL</strong>。</li></ul> <h4 id="if结构"><a href="#if结构" class="header-anchor">#</a> if结构</h4> <p><strong>if结构只能使用在begin-end中</strong>。</p> <p>语法</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">IF</span> search_condition <span class="token keyword">THEN</span> statement_list   
+<span class="token keyword">ELSEIF</span> search_condition <span class="token keyword">THEN</span> statement_list
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token keyword">ELSE</span> statement_list<span class="token punctuation">;</span><span class="token punctuation">]</span>
+<span class="token keyword">END</span> <span class="token keyword">IF</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="循环结构"><a href="#循环结构" class="header-anchor">#</a> 循环结构</h3> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- while循环</span>
+<span class="token punctuation">[</span>label_name:<span class="token punctuation">]</span> <span class="token keyword">while</span> 循环条件 <span class="token keyword">do</span>
+    循环体<span class="token punctuation">;</span>
+<span class="token keyword">end</span> <span class="token keyword">while</span> <span class="token punctuation">[</span>label_name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token operator">-</span> 如果需要在循环内提前终止 <span class="token keyword">while</span>循环，则需要使用标签；标签需要成对出现。
+	<span class="token comment">-- 退出循环</span>
+		退出整个循环 <span class="token keyword">leave</span> label_name<span class="token punctuation">;</span>
+		退出当前循环 <span class="token keyword">iterate</span> label_name<span class="token punctuation">;</span>
+
+
+<span class="token comment">--loop循环</span>
+<span class="token punctuation">[</span>label_name:<span class="token punctuation">]</span> <span class="token keyword">loop</span>
+    循环体<span class="token punctuation">;</span>
+<span class="token keyword">end</span> <span class="token keyword">loop</span> <span class="token punctuation">[</span>label_name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token comment">--需搭配leave和iterate，否则会死循环</span>
+
+<span class="token comment">--repeat</span>
+<span class="token punctuation">[</span>label_name:<span class="token punctuation">]</span> <span class="token keyword">repeat</span>
+    循环体<span class="token punctuation">;</span>
+until 结束循环的条件
+<span class="token keyword">end</span> <span class="token keyword">repeat</span> <span class="token punctuation">[</span>label_name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a0f0c145.js" defer></script><script src="/assets/js/2.559856d7.js" defer></script><script src="/assets/js/33.89462aeb.js" defer></script>
+  </body>
+</html>
