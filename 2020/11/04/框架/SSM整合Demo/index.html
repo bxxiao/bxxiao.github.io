@@ -121,6 +121,16 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
@@ -348,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">导入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">SpringMVC配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">Spring配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88Mybatis"><span class="nav-number">4.1.</span> <span class="nav-text">整合Mybatis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">整合spring事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.3.</span> <span class="nav-text">spring配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">日志配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">web.xml配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-Generator"><span class="nav-number">7.</span> <span class="nav-text">Mybatis-Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-text">导入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">SpringMVC配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">Spring配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88Mybatis"><span class="nav-text">整合Mybatis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-text">整合spring事务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">spring配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">日志配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">web.xml配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-Generator"><span class="nav-text">Mybatis-Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -368,11 +378,13 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/Tag/">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>

@@ -119,6 +119,16 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
@@ -371,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestBody%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">@RequestBody注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6json%E5%AF%B9%E8%B1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">接收json对象字符串示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6json%E6%95%B0%E7%BB%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">接收json数组示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Jackson%E5%A4%84%E7%90%86json"><span class="nav-number">2.</span> <span class="nav-text">使用Jackson处理json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jackson%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">Jackson简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-number">2.2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E5%AD%97%E7%AC%A6%E4%B8%B2-%E3%80%8B%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.3.</span> <span class="nav-text">JSON字符串-》对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-%E3%80%8Bjson%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.4.</span> <span class="nav-text">对象-》json字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E6%95%B0%E7%BB%84%E3%80%8A-%E3%80%8BLsit"><span class="nav-number">2.5.</span> <span class="nav-text">JSON数组《-》Lsit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestBody%E6%B3%A8%E8%A7%A3"><span class="nav-text">@RequestBody注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6json%E5%AF%B9%E8%B1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%A4%BA%E4%BE%8B"><span class="nav-text">接收json对象字符串示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6json%E6%95%B0%E7%BB%84%E7%A4%BA%E4%BE%8B"><span class="nav-text">接收json数组示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Jackson%E5%A4%84%E7%90%86json"><span class="nav-text">使用Jackson处理json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jackson%E7%AE%80%E4%BB%8B"><span class="nav-text">Jackson简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96"><span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E5%AD%97%E7%AC%A6%E4%B8%B2-%E3%80%8B%E5%AF%B9%E8%B1%A1"><span class="nav-text">JSON字符串-》对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-%E3%80%8Bjson%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">对象-》json字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E6%95%B0%E7%BB%84%E3%80%8A-%E3%80%8BLsit"><span class="nav-text">JSON数组《-》Lsit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-text">References</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -391,11 +401,13 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/Tag/">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
