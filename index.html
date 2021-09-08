@@ -182,10 +182,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-30 13:05:17 / 修改时间：13:06:37" itemprop="dateCreated datePublished" datetime="2021-08-30T13:05:17+08:00">2021-08-30</time>
+              <time title="创建时间：2021-08-30 13:05:17" itemprop="dateCreated datePublished" datetime="2021-08-30T13:05:17+08:00">2021-08-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-01 12:09:03" itemprop="dateModified" datetime="2021-09-01T12:09:03+08:00">2021-09-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -208,174 +214,14 @@
 
       
           <h2 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h2><p><strong>索引是存储引擎用于快速找到记录的一种数据结构</strong>。其作用相当于是一个 “目录”，在这个目录中可以快速找到想要的内容。</p>
-<p>来自《高性能MySQL》：</p>
-<p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210715154047829.png" alt="image-20210715154047829"></p>
-<p>MYSQL 中，索引是在存储引擎层而不是服务器层实现的。所以，并没有统一的索引标准：不同存储引擎的索引的工作方式并不一样，也不是所有的存储引擎都支持所有类型的索引。即使多个存储引擎支持同一种类型的索引，其底层的实现也可能不同。</p>
-<p><strong>索引可以包含一个或多个列，当索引对多个值进行排序时按照的是定义索引列时的顺序</strong>。</p>
-<h2 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h2><h3 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B - Tree 索引"></a>B - Tree 索引</h3><p>不同存储引擎的 B - Tree 索引的底层数据结构可能不同，<strong>对于 InnoDB，其使用的是 B+ 树数据结构</strong>。</p>
-<p><strong>使用 B+ 树查找数据可以避免全表扫描，大幅提升效率</strong>。其中，<strong>B+ 树的叶子结点指向的是被索引的数据（即表记录），这些叶子结点是按顺序窜起来的链表，所以 B+ 树索引同样适合做范围查找</strong>。</p>
-<h4 id="如何命中索引"><a href="#如何命中索引" class="headerlink" title="如何命中索引"></a>如何命中索引</h4><p><strong>B - Tree 索引有以下类型的有效匹配</strong>：</p>
-<ul>
-<li><p><strong>全键值匹配</strong>：指和索引中的所有列进行匹配。</p>
-</li>
-<li><p><strong>匹配最左前缀（最左匹配原则）：若不是按照索引的最左列开始依次匹配，则不能触发索引，且如果某个列的范围查找可以触发索引，则之后的列都不能使用索引优化查询，且不能跳过索引中的列</strong>。</p>
-<p>更通俗点的说法：<strong>查询条件中出现的列必须依次跟索引中的列对应，且当遇到非等值比较，则后续列将不能进行匹配</strong>。</p>
-<blockquote>
-<p>如有索引 <code>(a,b,c,d)</code>，查询条件 <code>a=1 and b=2 and c&gt;3 and d=4</code>，则会在每个节点依次命中 a、b、c，无法命中 d 。<strong>即在查找时，只跟索引的 a、b、c 值进行比较</strong>。</p>
-</blockquote>
-<p><strong style="color:red">但对于 <code>=,in</code> ，其实是不需要考虑字段顺序的，mysql 会自动优化这些条件的顺序，以匹配尽可能多的索引列</strong>。</p>
-<p>例子：如有索引 <code>(a,b,c,d)</code>，查询条件 <code>c&gt;3 and b=2 and a=1 and d&lt;4</code>与 <code>a=1 and c&gt;3 and b=2 and d&lt;4</code>等顺序都是可以的，MySQL会自动优化为 <code>a=1 and b=2 and c&gt;3 and d&lt;4</code>，依次命中a、b、c。</p>
-</li>
-<li><p><strong>匹配列前缀</strong>：只匹配某一列值的开头一小部分，如查找 name 字段以 “ J ” 开头的记录。<strong>MYSQL 能在索引中做最左前缀匹配的 LIKE 比较，即类似 <code>Xyz%</code> 的形式</strong>，但是如果是通配符开头的 LIKE 查询，如 <code>%xyt%</code> ，存储引擎就无法儆比较匹配。这种情况下， MYSQL 只能提取数据行的值而不是索引值来做比较。</p>
-</li>
-<li><p><strong>索引列不能是表达式的一部分或函数的参数</strong>，否则索引不能生效。</p>
-</li>
-</ul>
-<p><strong>B+ 树中的结点还可以用于 ORDER BY 排序，若是一个 ORDER BY 子句后的列字段可以对应一个索引，则这个索引也可以用于排序</strong>。</p>
-<h3 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h3><p>哈希索引基于哈希表实现，<strong style="color:red">只有精确匹配所有索引列的查询才有效（需要全键值匹配且只能等值比较）</strong>。<strong>哈希索引会根据所有索引列的值计算出哈希值，并直接定位到记录</strong>。</p>
-<p>哈希索引优点明显，就是查找速度非常快。</p>
-<p>缺点同样明显，哈希表不能保证有序性：</p>
-<ul>
-<li><strong>索引哈希索引不适用于范围查找和排序</strong>。</li>
-<li><strong>不支持部分索引列匹配查找</strong>。</li>
-<li><strong>只支持等值比较匹配</strong>。</li>
-<li>若是哈希碰撞很多，则维护成本较高。</li>
-</ul>
-<p>另外，Innodb 引擎有一个特殊的功能叫做“<strong>自适应哈希索引</strong>( adaptive hash index)”。<strong>当 Innodb 注意到某些索引值被使用得非常频繁时，它会在内存中基于B-Tree索引之上再创建一个哈希索引</strong>，这样就让 B-Tree 索引也具有哈希索引的一些优点，比如快速的哈希查找。<strong>这是一个完全自动的、内部的行为，用户无法控制或者配置，不过如果有必要，完全可以关闭该功能</strong>。</p>
-<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>聚簇索引就是<strong>索引和数据一起存放</strong>的索引，当表有聚簇索引时，<strong>它的数据行是存放在聚簇索引的叶子节点中的</strong>。</p>
-<p>聚簇索引是主键的索引，<strong>即是通过主键列来组织索引的</strong>。另外，在 innodb 中，<strong style="color:red">若一个表没有指定主键列，innodb 会选择第一个（这里的顺序指的是创建索引时第一个创建的）唯一的非空索引（Unique、Not Null）作为主键，若是没有则自动创建一个 6 byte 大小的主键列</strong>。一个表只能有一个聚簇索引。</p>
-<p>聚簇索引的<strong>优点</strong>：</p>
-<ul>
-<li>一般情况下，聚簇索引的<strong>查询速度</strong>比非聚簇索引要<strong>更快，因为数据行就存储在聚簇索引上</strong>。定位到了结点，就相当于定位到了数据。</li>
-<li>对于主键的排序和范围查找速度快。</li>
-</ul>
-<p><strong>缺点</strong>：</p>
-<ul>
-<li><strong>依赖于有序的数据</strong>。按主键的顺序插入是速度最快的方法；否则速度会较慢，比如若是插入的新数据需要插入到一个已满的结点，则会造成结点分裂，这时需要额外的开销来维护 B+ 树结构。</li>
-<li><strong>更新索引列（主键列）的值的代价大</strong>。需要将更新的结点移动到新的位置。一般主键列是不允许修改的。</li>
-</ul>
-<p><strong style="color:red">InnoDB 引擎中，其数据文件本身就是索引文件（聚簇索引），InnoDB 的表数据文件本身就是按 B+Tree 组织的一个索引结构，树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引，即聚簇索引（或聚集索引）</strong>。而其余的索引都作为辅助索引，<strong>辅助索引的 data 域存储相应记录主键的值而不是地址</strong>，这也是和 MyISAM 不同的地方。（MyISAM 的索引都是数据和索引分开存储）</p>
-<p>InnoDB 中，在根据主索引搜索时，直接找到 key 所在的节点即可取出数据；在根据辅助索引查找时，则需要先取出主键的值，再走一遍主索引。 因此，<strong>在设计表的时候，不建议使用过长的字段作为主键，也不建议使用非单调的字段作为主键，这样会造成主索引频繁分裂</strong>。</p>
-<h3 id="非聚簇索引（辅助索引）"><a href="#非聚簇索引（辅助索引）" class="headerlink" title="非聚簇索引（辅助索引）"></a>非聚簇索引（辅助索引）</h3><p><strong>非聚簇索引又叫辅助索引、二级索引</strong>。</p>
-<p>InnoDB 中非聚簇索引的<strong>叶结点中没有存储全部数据行数据，除了索引的键值外，存储的是数据行对应的主键值</strong>。即索引结构和数据分开存放。</p>
-<p>在非聚簇索引中定位到结点时，还需要根据这个主键值到聚簇（主键）索引中再次查询，定位到数据行，<strong>这个操作称为回表查询</strong>。</p>
-<p>常见的二级索引：</p>
-<ol>
-<li><strong>唯一索引(Unique Key)</strong> ：唯一索引也是一种约束。<strong>唯一索引的属性列不能出现重复的数据，但是允许数据为 NULL，一张表允许创建多个唯一索引。</strong> 建立唯一索引的目的大部分时候都是为了该属性列的数据的唯一性，而不是为了查询效率。</li>
-<li><strong>普通索引(Index)</strong> ：<strong>普通索引的唯一作用就是为了快速查询数据，一张表允许创建多个普通索引，并允许数据重复和 NULL。</strong></li>
-<li><strong>前缀索引(Prefix)</strong> ：前缀索引只适用于字符串类型的数据。前缀索引是对文本的前几个字符创建索引，相比普通索引建立的数据更小， 因为只取前几个字符。</li>
-<li><strong>全文索引(Full Text)</strong> ：全文索引主要是为了检索大文本数据中的关键字的信息，是目前搜索引擎数据库使用的一种技术。Mysql5.6 之前只有 MYISAM 引擎支持全文索引，5.6 之后 InnoDB 也支持了全文索引。</li>
-</ol>
-<p>InnoDB 和 myisam关于聚簇索引、二级索引的存储方式差别：（来自《高性能MySQL》）</p>
-<img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210716204841233.png" alt="image-20210716204841233" style="zoom: 80%;" />
-
-<p>即 InnoDB 中主键索引是聚簇索引；<strong>MyISAM 的索引文件和数据文件是分离的，索引中的叶子结点的 data 域都是指向数据行的指针</strong>。</p>
-<blockquote>
-<p>这里的指针应该可以直接定位到具体的数据行，而不用再进行回表</p>
-</blockquote>
-<h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><p><strong>如果一个索引包含（覆盖）查询所需要的全部字段，则称为覆盖索引</strong>。</p>
-<p><strong style="color:red">这里的 “所需要的全部字段” 包括 Where 子句之后的字段，还有 select 之后的列</strong>。</p>
-<p>因为包含了所需的全部字段，所以<strong>定位到叶结点时，直接从索引中获取值即可，不用根据主键值进行回表查询，节省了大量 IO 操作的时间</strong>。</p>
-<p>覆盖索引的优点：</p>
-<ul>
-<li><p>InnoDB 中，<strong>如果一个查询可以命中覆盖索引，则不需要进行回表查询，从索引中获取列值即可</strong>。这是覆盖索引最主要的用处。</p>
-</li>
-<li><p>索引条目一般小于数据行大小，可以减少数据访问量。</p>
-</li>
-<li><p>因为索引是按照列值顺序存储的（至少在单个页内是如此），所以对于 IO 密集型的范围査询会比随机从磁盘读取每一行数据的 IO 要少得多。</p>
-</li>
-</ul>
-<p><strong>当一个查询命中覆盖索引时，EXPLAIN 命令的 extra 列会显示 <code>Using index</code></strong> 。</p>
-<blockquote>
-<p>《高性能MySQL》页码P217：</p>
-<p>InnoDB 的二级索引中包含主键列的值，可以利用这个主键列来进行覆盖查询，比如一个表的主键是 a ，存在一个普通索引 (b) ，则 (a,b) 可以使用覆盖索引。</p>
-<p>但是测试之后似乎不行：</p>
-<p>表ab，列 a 是主键，b 是一个普通索引列，不管是 (a,b) 还是 (b,a) 都不能命中索引。</p>
-</blockquote>
-<h2 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h2><p>优点：</p>
-<ul>
-<li>索引极大减少需要扫描的数据量。</li>
-<li>对于 B-Tree 索引，因为其有序性，可以用来做 ORDER BY 和 GROUP BY 操作。<strong>可以帮助服务器减少排序和临时表</strong>。</li>
-<li>某些索引中会存储实际的值字段值，所以<strong>某些查询使用索引就能完全完成查询</strong>，不用再去执行读数据。</li>
-</ul>
-<p>索引并不是总是有效。<strong>只有当索引带来的查询收益大于其维护代价时才使用索引。如果数据量较小，大部分情况下全表扫描效率更高；中到大型数据量则索引非常有效；但若是特大型数据则使用索引的代价会过高</strong>。</p>
-<h2 id="高性能索引策略"><a href="#高性能索引策略" class="headerlink" title="高性能索引策略"></a>高性能索引策略</h2><h3 id="使用选择性高的字段创建索引"><a href="#使用选择性高的字段创建索引" class="headerlink" title="使用选择性高的字段创建索引"></a>使用选择性高的字段创建索引</h3><p>索引的<strong>选择性</strong>（又叫<strong>区分度</strong>）：指索引列中，<strong>不重复的值和表记录总数的比值</strong>。</p>
-<p>选择性越高，查询效率越高——<strong>选择性高的索引可以让 MySQL 在查找时过程掉更多的行</strong>。</p>
-<p><strong>尽量使用选择性高的字段创建索引</strong>。</p>
-<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>前缀索引即将字段值的部分前缀作为索引。<strong>对于长文本值使用前缀索引可以节省空间</strong>。</p>
-<p><strong>所以可以考虑在字符串类型的字段上使用前缀索引代替普通索引。</strong></p>
-<p>前缀索引仅限于字符串类型，较普通索引会占用更小的空间，所以可以考虑使用前缀索引带替普通索引。</p>
-<p>另外，<strong>前缀索引不支持order by 、group by</strong> 。</p>
-<h3 id="联合索引取代单列索引"><a href="#联合索引取代单列索引" class="headerlink" title="联合索引取代单列索引"></a>联合索引取代单列索引</h3><p>尽可能的考虑建立联合索引，而不是为每个列单独创建一个索引。</p>
-<p><strong>因为索引是需要占用磁盘空间的，可以简单理解为每个索引都对应着一颗 B+ 树。如果一个表的字段过多，索引过多，那么当这个表的数据达到一个体量后，索引占用的空间也是很多的，且当执行插入、更新或修改索引等操作时，耗费的时间也是较多的，因为需要维护相关的所有单列索引。如果是联合索引，多个字段在一个索引上，那么将会节约很大磁盘空间，且修改数据的操作效率也会提升</strong>。</p>
-<blockquote>
-<p>但单列索引相比联合索引并不总是没用的，具体见下文的冗余索引。</p>
-</blockquote>
-<h3 id="合适的索引列顺序"><a href="#合适的索引列顺序" class="headerlink" title="合适的索引列顺序"></a>合适的索引列顺序</h3><p>联合索引的索引顺序是很重要的，要根据常用的查询语句来定义索引列的顺序，判断是否命中索引要根据<strong>最左匹配原则</strong>。</p>
-<h3 id="使用聚簇索引"><a href="#使用聚簇索引" class="headerlink" title="使用聚簇索引"></a>使用聚簇索引</h3><p>使用聚簇索引，<strong>即使用主键进行查询</strong>。</p>
-<p>在聚簇索引中顺序插入行。</p>
-<p>顺序插入主键的缺点：（来自《高性能MySQL》）</p>
-<p>对于高并发工作负载，在 InnoDB 中按主键顺序插入可能会造成明显的争用。主键的上界会成为“热点”。因为所有的插入都发生在这里，所以并发插入可能导致间隙锁竞争。另一个热点可能是AUT0 INCREMENT锁机制;如果遇到这个问题，则可能需要考虑重新设计表或者应用，或者更改 innodb autoinc1 ock mode配置。如果你的服务器版本还不支持 innodb autoinc lock mode参数，可以升级到新版本的 Innodb,可能对这种场景会工作得更好。</p>
-<h3 id="去除冗余和重复索引"><a href="#去除冗余和重复索引" class="headerlink" title="去除冗余和重复索引"></a>去除冗余和重复索引</h3><p><strong>重复索引指的是在相同的列上创建了相同类型的索引</strong>。</p>
-<p>示例：</p>
-<p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210720101922020.png" alt="image-20210720101922020"></p>
-<p><strong>MySQL 的 unique 和 主键都是通过索引实现</strong>，因此以上的 unique 和  index 是多余的。</p>
-<p><strong>冗余索引</strong>：对于索引 <code>(a) (a,b)</code> ，其中 <code>(a)</code> 是冗余的，因为能命中前者，则一定能命中后者，这时使用后者即可。</p>
-<p><strong>创建冗余索引通常发生在为表添加新索引的时候</strong>。例如，增加一个新的索引 (AB)，而不是扩展已有的索引 (A) 。<strong>还有一种情况是将一个索引扩展为 (A ID) ，其中 ID 是主键，对于 Innodb 来说，主键列已经包含在二级索引中了，所以这也是冗余的</strong>。</p>
-<p><strong>但冗余索引不一定总是没用的</strong>：</p>
-<p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210717223610524.png" alt="image-20210717223610524"></p>
-<p><strong>冗余索引太多也会导致 insert、update、delete 等操作变慢 （需要同时更新索引）。</strong> </p>
-<blockquote>
-<p>存疑：因为二级索引的叶子节点包含了主键值，所以在列 (A) 上的索引就相当于在 (A,ID) 上的索引。但如果将索引扩展为 (AB) ，则变成了 (AB,ID)。</p>
-</blockquote>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><strong>1.选择合适的字段创建索引：</strong></p>
-<ul>
-<li><strong>不为 NULL 的字段</strong> ：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。如果字段频繁被查询，但又避免不了为 NULL，建议使用 0,1,true,false 这样语义较为清晰的短值或短字符作为替代。</li>
-<li><strong>被频繁查询的字段</strong> ：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
-<li><strong>被作为条件查询的字段</strong> ：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
-<li><strong>频繁需要排序的字段</strong> ：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
-<li><strong>被经常频繁用于连接的字段</strong> ：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率。</li>
-</ul>
-<p><strong>2.被频繁更新的字段应该慎重建立索引。</strong></p>
-<p>虽然索引能带来查询上的效率，但是维护索引的成本也是不小的。 如果一个字段不被经常查询，反而被经常修改，那么就更不应该在这种字段上建立索引了。</p>
-<h2 id="使用索引的一些建议"><a href="#使用索引的一些建议" class="headerlink" title="使用索引的一些建议"></a>使用索引的一些建议</h2><ul>
-<li>对于中到大型表索引都是非常有效的，但是特大型表的话维护开销会很大，不适合建索引</li>
-<li>避免 where 子句中对字段施加函数，这会造成无法命中索引。</li>
-<li>在使用 InnoDB 时使用与业务无关的自增主键作为主键，即使用逻辑主键，而不要使用业务主键。</li>
-<li>删除长期未使用的索引，不用的索引的存在会造成不必要的性能损耗 MySQL 5.7 可以通过查询 sys 库的 schema_unused_indexes 视图来查询哪些索引从未被使用</li>
-<li>在使用 limit offset 查询缓慢时，可以借助索引来提高性能</li>
-</ul>
-<h2 id="InnoDB的数据页结构"><a href="#InnoDB的数据页结构" class="headerlink" title="InnoDB的数据页结构"></a>InnoDB的数据页结构</h2><p>InnoDB 的数据页结构：（来自《InnoDB存储引擎》）</p>
-<img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210720183547986.png" alt="image-20210720183547986" style="zoom:67%;" />
-
-<p>InnoDB 的存储引擎表总是 B+ 树索引组织的，<strong>结点是数据页，是 InnoDB 中的最小磁盘单位</strong>。</p>
-<p>这里重点说明 User Records 和 Page Directory 部分：</p>
-<ul>
-<li><p><strong>User Records</strong> 即存放实际数据行的部分。<strong>这些行记录依次串成一条单链表</strong>。</p>
-</li>
-<li><p>Page Directory 是 User Records 中的记录的<strong>稀疏目录</strong>。<strong>存储这些记录的位置</strong>。</p>
-</li>
-<li><p>它们的关系大致如下：</p>
-<img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210720200437692.png" alt="image-20210720200437692" style="zoom: 67%;" />
-</li>
-<li><p>在 Page Directory 中的<strong>记录是按索引值排序</strong>的，<strong>所以可以通过二叉查找快速定位到对应的槽</strong>（Slot），但因为一个槽是对应多个记录的，<strong>所以还需要到对应的槽中遍历找到具体的行记录</strong>。</p>
-</li>
-</ul>
-<p><strong style="color:red">B+ 树索引本身并不能找到具体的一条记录，能找到的只是该记录所在的页。数据库把页载入到内存，然后通过 Page Directory（页目录） 再进行二叉查找</strong>。<strong>只不过叉查找的时间复杂度很低，同时在内存中的查找很快，因此通常忽略这部分查找所用的时间</strong>。即<strong>在 B+ 树索引中定位到对应的叶结点，就是定位到了记录所在的页，再根据页记录定位到对应的槽，在槽中遍历找到具体的行记录</strong>。这里说的是在聚簇索引中的情况。</p>
-<p>而若是<strong>没有使用索引，则需要进行全表扫描</strong>，大致过程是：</p>
-<ul>
-<li>遍历聚簇索引的叶结点（<strong>B+ 树的叶结点串成一条双向链</strong>），找到记录所在页；</li>
-<li>由于没有使用索引（主键），所以需要从头开始遍历页中的记录部分（<strong>即遍历单向链</strong>）。</li>
-<li>遍历双向链找到所在页，遍历单链表找到所在记录，<strong>相比于使用索引时的 B+ 树查找和二分查找，效率肯定会低上很多。这就是为什么索引会比全表扫描更快</strong>。</li>
-</ul>
-<hr>
-<p>参考：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95">数据库索引总结 2</a> </p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4Njg5MDA5NA==&mid=2247484721&idx=1&sn=410dea1863ba823bec802769e1e6fe8a&chksm=ebd74430dca0cd265a9a91dcb2059e368f43a25f3de578c9dbb105e1fba0947e1fd0b9c2f4ef&token=1676899695&lang=zh_CN&scene=21#wechat_redirect">数据库两个神器索引和锁(修订版)-3y</a></p>
-<p>[数据库索引总结 1](<a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/database/MySQL">https://snailclimb.gitee.io/javaguide/#/docs/database/MySQL</a> Index) </p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/30/MySQL/MySQL%E7%B4%A2%E5%BC%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

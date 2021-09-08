@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://example.com/2021/08/25/Java/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81/ArrayList-JDK8/</loc>
+    <lastmod>2021-09-08</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2021/08/25/Java/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81/HashMap-JDK8/</loc>
+    <lastmod>2021-09-08</lastmod>
+  </url>
+  <url>
     <loc>http://example.com/2021/08/30/MySQL/MySQL%E7%B4%A2%E5%BC%95/</loc>
-    <lastmod>2021-08-30</lastmod>
+    <lastmod>2021-09-01</lastmod>
   </url>
   <url>
     <loc>http://example.com/2021/08/25/MySQL/MySQL%E6%A6%82%E8%BF%B0/</loc>
@@ -113,15 +121,7 @@
     <lastmod>2021-08-30</lastmod>
   </url>
   <url>
-    <loc>http://example.com/2021/08/25/Java/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81/HashMap-JDK8/</loc>
-    <lastmod>2021-08-30</lastmod>
-  </url>
-  <url>
     <loc>http://example.com/2021/08/25/Java/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81/HashMap-JDK7/</loc>
-    <lastmod>2021-08-30</lastmod>
-  </url>
-  <url>
-    <loc>http://example.com/2021/08/25/Java/%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81/ArrayList-JDK8/</loc>
     <lastmod>2021-08-30</lastmod>
   </url>
   <url>
