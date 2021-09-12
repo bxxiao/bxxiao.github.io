@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="i++,i–同步问题代码： 12345678910111213static int counter;public static void main(String[] args) throws InterruptedException &amp;#123;    Thread t1 &#x3D; new Thread(() -&gt; &amp;#123; for (int i &#x3D; 0; i &lt; 5000; i++)">
+  <meta name="description" content="1. i++,i–同步问题代码： 12345678910111213static int counter;public static void main(String[] args) throws InterruptedException &amp;#123;    Thread t1 &#x3D; new Thread(() -&gt; &amp;#123; for (int i &#x3D; 0; i &lt; 5000; i+">
 <meta property="og:type" content="article">
 <meta property="og:title" content="synchronized">
 <meta property="og:url" content="http://example.com/2021/08/25/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/synchronized/index.html">
 <meta property="og:site_name" content="bxxiao">
-<meta property="og:description" content="i++,i–同步问题代码： 12345678910111213static int counter;public static void main(String[] args) throws InterruptedException &amp;#123;    Thread t1 &#x3D; new Thread(() -&gt; &amp;#123; for (int i &#x3D; 0; i &lt; 5000; i++)">
+<meta property="og:description" content="1. i++,i–同步问题代码： 12345678910111213static int counter;public static void main(String[] args) throws InterruptedException &amp;#123;    Thread t1 &#x3D; new Thread(() -&gt; &amp;#123; for (int i &#x3D; 0; i &lt; 5000; i+">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210312193230918.png">
 <meta property="article:published_time" content="2021-08-25T06:06:50.348Z">
-<meta property="article:modified_time" content="2021-08-30T04:56:14.320Z">
+<meta property="article:modified_time" content="2021-09-12T16:31:20.599Z">
 <meta property="article:author" content="bxxiao">
 <meta property="article:tag" content="Java多线程">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-30 12:56:14" itemprop="dateModified" datetime="2021-08-30T12:56:14+08:00">2021-08-30</time>
+                <time title="修改时间：2021-09-13 00:31:20" itemprop="dateModified" datetime="2021-09-13T00:31:20+08:00">2021-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,7 +221,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="i-i–同步问题"><a href="#i-i–同步问题" class="headerlink" title="i++,i–同步问题"></a>i++,i–同步问题</h2><p>代码：</p>
+        <h2 id="1-i-i–同步问题"><a href="#1-i-i–同步问题" class="headerlink" title="1. i++,i–同步问题"></a>1. i++,i–同步问题</h2><p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> counter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(() -&gt; &#123; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5000</span>; i++) &#123; counter++;</span><br><span class="line">    &#125; &#125;, <span class="string">&quot;t1&quot;</span>);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(() -&gt; &#123; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5000</span>; i++) &#123; counter--;</span><br><span class="line">    &#125; &#125;, <span class="string">&quot;t2&quot;</span>);</span><br><span class="line">    t1.start();</span><br><span class="line">    t2.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    log.debug(<span class="string">&quot;&#123;&#125;&quot;</span>,counter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>两个线程执行完后，结果是不确定的</strong>。</p>
@@ -233,17 +233,20 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getstatic	<span class="regexp">//</span>获取静态变量</span><br><span class="line">iconst_1	<span class="regexp">//</span>准备常量<span class="number">1</span></span><br><span class="line">isub		<span class="regexp">//</span>减操作</span><br><span class="line">putstatic 	<span class="regexp">//</span>将修改后的值存入静态变量</span><br></pre></td></tr></table></figure>
 
 <p><strong>两个操作都需要先通过 getstatic 获取值，若一个操作没有等另一个操作完成，则其中一个 putstatic 必定会覆盖掉另一个，不能保证结果为 0 ，会造成丢失修改</strong>。</p>
-<h2 id="synchronized-的内存语义"><a href="#synchronized-的内存语义" class="headerlink" title="synchronized 的内存语义"></a>synchronized 的内存语义</h2><p>synchronized 的这个内存语义就可以解决共享变量内存可见性问题。</p>
+<h2 id="2-synchronized-的内存语义"><a href="#2-synchronized-的内存语义" class="headerlink" title="2. synchronized 的内存语义"></a>2. synchronized 的内存语义</h2><p>synchronized 的这个内存语义就可以解决共享变量内存可见性问题。</p>
 <p>进入和退出 synchronized 块的语义：</p>
 <ul>
 <li><p><strong>进入 synchronized 块</strong>的内存语义是<strong>把在 synchronized 块内使用到的变量从线程的工作内存中清除</strong>， 这样在synchronized块内使用到该变量时就不会从线程的工作内存中获取， 而是直接从主内存中获取。</p>
+<blockquote>
+<p>更准确的说，是先从主内存中把值读取到线程的工作内存，再从工作内存中读取值。因为 JMM 规定了线程不能直接从主内存读取变量。</p>
+</blockquote>
 </li>
 <li><p><strong>退出 synchronized 块</strong>的内存语义是<strong>把在 synchronized 块内对共享变量的修改刷新到主内存</strong>。</p>
 </li>
 </ul>
 <p><strong>这也是加锁和释放锁的语义</strong>，当获取锁后会清空锁块内本地内存中将会被用到的共享变量，在使用这些共享变量时从主内存进行加载，在释放锁时将本地内存中修改的共享变量刷新到主内存。</p>
 <p>除可以解决共享变量内存可见性问题外， synchronized 经常被用来实现原子性操作。另外要注意，<strong>synchronized关键字会引起线程上下文切换并带来线程调度开销</strong>。</p>
-<h2 id="synchronized-的使用"><a href="#synchronized-的使用" class="headerlink" title="synchronized 的使用"></a>synchronized 的使用</h2><blockquote>
+<h2 id="3-synchronized-的使用"><a href="#3-synchronized-的使用" class="headerlink" title="3. synchronized 的使用"></a>3. synchronized 的使用</h2><blockquote>
 <p><strong>临界区</strong>指的是一个访问共用资源的程序片段，而这些共用资源又无法同时被多个线程线程访问的特性。当有线程进入临界区段时，其他线程或是进程必须等待。</p>
 <p>竞态条件（Race Condition）：多个线程在临界区内执行，由于代码的执行序列不同而导致结果无法预测，称之为发生了竞态条件。</p>
 </blockquote>
@@ -267,7 +270,7 @@
 
 
 
-<h2 id="从字节码看-synchronized"><a href="#从字节码看-synchronized" class="headerlink" title="从字节码看 synchronized"></a>从字节码看 synchronized</h2><h3 id="synchronized代码块"><a href="#synchronized代码块" class="headerlink" title="synchronized代码块"></a>synchronized代码块</h3><p>Test类：</p>
+<h2 id="4-从字节码看-synchronized"><a href="#4-从字节码看-synchronized" class="headerlink" title="4. 从字节码看 synchronized"></a>4. 从字节码看 synchronized</h2><h3 id="synchronized代码块"><a href="#synchronized代码块" class="headerlink" title="synchronized代码块"></a>synchronized代码块</h3><p>Test类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (lock)&#123;</span><br><span class="line">            counter++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>对该类的class文件执行 <code>javap -c</code> （或 <code>javap -verbose</code> ）指令，得到反编译的指令码：</p>
@@ -302,7 +305,7 @@
 
 <p>其访问标志：</p>
 <p><img src="https://gitee.com/bxgitee/noteImage/raw/master/image/image-20210312193230918.png" alt="image-20210312193230918"></p>
-<h2 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h2><p>Monitor，又叫管程，监视器。是操作系统的一个概念，其具体含义：</p>
+<h2 id="5-monitor-对象"><a href="#5-monitor-对象" class="headerlink" title="5. monitor 对象"></a>5. monitor 对象</h2><p>Monitor，又叫管程，监视器。是操作系统的一个概念，其具体含义：</p>
 <blockquote>
 <p>可以利用共享数据构抽象地表示系统中的共享资源并且将对该共享数据结构实施的特定操作定义为一组过程。进程对共享资源的申请、释放和其它操作<strong>必须通过这组过程接地对共享数据结构实现操作</strong>。</p>
 <p>代表共享资源的数据结构以及由对该共享数据结构实施操作的一组过程所组成的资源管理程序共同构成了一个操作系统的资源管理模块，称之为管程。<strong>管程被请求和释放资源的进程所调用</strong>。</p>
@@ -323,14 +326,15 @@
 <p>当多个线程同时访问一段同步代码时（<strong>monitorenter</strong>），首先会进入 <code>_EntryList</code> 队列中进行竞争，<strong>竞争成功的线程将 monitor 的 <code>_owner</code> 指向当前线程，同时 <code>_count</code> 变量加 1 。即当前线程获得了对象锁。其他获取不到锁的线程阻塞在 <code>_EntryList</code> 队列</strong>。</p>
 <p><strong>当线程执行完同步代码块并释放锁时（monitorexit），<code>_owner</code> 置为 null，<code>_count</code> 减 1， <code>_EntryList</code> 队列中的线程重新竞争锁</strong>。若是持有 monitor 的线程调用了 <code>wait()</code> 方法（monitor 对应的对象的 wait 方法），则线程释放锁（同样是<code>_owner</code> 置为 null，<code>_count</code> 减 1），并<strong>进入 <code>_WaitSet</code> 队列</strong>，且同样 <code>_EntryList</code> 队列中的线程竞争锁。</p>
 <p><strong>当执行 monitorenter 指令时，实际上是调用 ObjectMonitor 对象的 <code>enter</code> 方法，执行 monitorexit 指令则是调用 <code>exit</code> 方法</strong>。只有在 JDK1.6 之前， <code>synchronized</code> 的实现才会直接调用 <code>enter</code> 和 <code>exit</code>，这种锁被称之为<strong>重量级锁</strong>。JDK 1.6 及之后对 synchronized 进行了优化。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="http://concurrent.redspider.group/article/02/9.html#922-%E5%81%8F%E5%90%91%E9%94%81">synchronized与锁</a> </p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuqinglong/p/9945618.html">Java6 及以上版本对 synchronized 的优化</a> </p>
-<p><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/multi-thread/2020%E6%9C%80%E6%96%B0Java%E5%B9%B6%E5%8F%91%E8%BF%9B%E9%98%B6%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93">Java并发进阶常见面试题总结</a> </p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120526&idx=1&sn=21b590e05c72e50167b07c777a7c190a&chksm=f36bbc6fc41c3579275ff8d8ab55585e25f6e5bc94e886089811a108ea2c0a4c27131cd4de7a&scene=21#wechat_redirect">[译]Java虚拟机是如何执行线程同步的</a> </p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120537&idx=1&sn=f56201217c0ca6fde45ee12965b56296&chksm=f36bbc78c41c356ee363367addcdc0b311afb2f9df86a7ee20d21348b3332fd64f273d6028ca&scene=21#wechat_redirect">Synchronized的实现原理（一）</a> </p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903566822342663">Moniter的实现原理</a> </p>
-</blockquote>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://concurrent.redspider.group/article/02/9.html#922-%E5%81%8F%E5%90%91%E9%94%81">synchronized与锁</a> </li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuqinglong/p/9945618.html">Java6 及以上版本对 synchronized 的优化</a> </li>
+<li><a target="_blank" rel="noopener" href="https://snailclimb.gitee.io/javaguide/#/docs/java/multi-thread/2020%E6%9C%80%E6%96%B0Java%E5%B9%B6%E5%8F%91%E8%BF%9B%E9%98%B6%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93">Java并发进阶常见面试题总结</a> </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120526&idx=1&sn=21b590e05c72e50167b07c777a7c190a&chksm=f36bbc6fc41c3579275ff8d8ab55585e25f6e5bc94e886089811a108ea2c0a4c27131cd4de7a&scene=21#wechat_redirect">[译]Java虚拟机是如何执行线程同步的</a> </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650120537&idx=1&sn=f56201217c0ca6fde45ee12965b56296&chksm=f36bbc78c41c356ee363367addcdc0b311afb2f9df86a7ee20d21348b3332fd64f273d6028ca&scene=21#wechat_redirect">Synchronized的实现原理（一）</a> </li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903566822342663">Moniter的实现原理</a> </li>
+</ul>
 
     </div>
 
@@ -414,7 +418,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#i-i%E2%80%93%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="nav-text">i++,i–同步问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized-%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89"><span class="nav-text">synchronized 的内存语义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">synchronized 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">修饰代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="nav-text">修饰实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-text">修饰静态方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B-synchronized"><span class="nav-text">从字节码看 synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">synchronized代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E6%96%B9%E6%B3%95"><span class="nav-text">synchronized方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitor"><span class="nav-text">Monitor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-i-i%E2%80%93%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="nav-text">1. i++,i–同步问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-synchronized-%E7%9A%84%E5%86%85%E5%AD%98%E8%AF%AD%E4%B9%89"><span class="nav-text">2. synchronized 的内存语义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-synchronized-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">3. synchronized 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">修饰代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="nav-text">修饰实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-text">修饰静态方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%8E%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B-synchronized"><span class="nav-text">4. 从字节码看 synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-text">synchronized代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E6%96%B9%E6%B3%95"><span class="nav-text">synchronized方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-monitor-%E5%AF%B9%E8%B1%A1"><span class="nav-text">5. monitor 对象</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
